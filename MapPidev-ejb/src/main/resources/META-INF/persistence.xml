@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="MapPidev-ejb">
+		<jta-data-source>java:/sqlserver/ds</jta-data-source>
+		<class>tn.esprit.entities.Analytic</class>
+		<class>tn.esprit.entities.Appointment</class>
+		<class>tn.esprit.entities.CustomRole</class>
+		<class>tn.esprit.entities.CustomUserClaim</class>
+		<class>tn.esprit.entities.CustomUserLogin</class>
+		<class>tn.esprit.entities.CustomUserRole</class>
+		<class>tn.esprit.entities.DayOff</class>
+		<class>tn.esprit.entities.Event</class>
+		<class>tn.esprit.entities.Message</class>
+		<class>tn.esprit.entities.Report</class>
+		<class>tn.esprit.entities.StepRequest</class>
+		<class>tn.esprit.entities.Step</class>
+		<class>tn.esprit.entities.Treatment</class>
+		<class>tn.esprit.entities.User</class>
+		<class>tn.esprit.entities.VisitReason</class>
+	
+		<properties>
+		 	<property name="hibernate.hbm2ddl.auto" value="update"/> 
+		</properties>
+	</persistence-unit>
+</persistence>
