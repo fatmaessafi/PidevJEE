@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      template="/WEB-INF/template/template.xhtml">
-      
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+
 	<ui:define name="title">
 		<title>Register</title>
 	</ui:define>
@@ -24,124 +24,134 @@
 								<div class="box_form">
 									<div class="form-group">
 										<label>Last Name</label> <br />
-										<p:inputText value="#{registerBean.LastName}" id="LastName" class="form-control" />
+										<p:inputText value="#{testBean.lastName}" id="LastName"
+											class="form-control" />
 
 									</div>
 									<div class="form-group">
 										<label>First Name</label> <br />
-										<p:inputText value="#{registerBean.FirstName}" id="FirstName" class="form-control" />
+										<p:inputText value="#{testBean.firstName}" id="FirstName"
+											class="form-control" />
 									</div>
-									<div class="form-group">
-										<label>Cin</label> <br />
-										<p:inputText  value="#{registerBean.Cin}" id="Cin" class="form-control" />
-									</div>
+
 									<div class="form-group">
 										<label>Email</label> <br />
-										<p:inputText   value="#{registerBean.Email}" id="Email" class="form-control" />
+										<p:inputText value="#{testBean.email}" id="Email"
+											class="form-control" />
 									</div>
 									<div class="form-group">
 										<label>Password</label> <br />
-										<h:inputSecret id="Password" class="form-control" />
+										<h:inputSecret id="Password" value="#{testBean.password}"
+											class="form-control" />
 									</div>
 									<div class="form-group">
 										<label>Confirm Password</label> <br />
-										<h:inputSecret id="ConfirmPassword" class="form-control" />
+										<h:inputSecret id="ConfirmPassword"
+											value="#{testBean.confirmPassword}" class="form-control" />
 									</div>
 									<div class="form-group">
-										<label>Gender</label> <br /> <select name="Gender"
+										<label>Gender</label> <br />
+										<h:selectOneMenu value="#{testBean.gender}" name="Gender"
 											class="form-control">
-											<option value="" disabled="disabled" selected="selected">Select
-												your option</option>
-											<option value="Male">Male</option>
-											<option value="Female">Female</option>
+											<f:selectItem itemLabel="---" noSelectionOption="true" />
+											<f:selectItem itemValue="Male" itemLabel="Male" />
+											<f:selectItem itemValue="Female" itemLabel="Female" />
 
-										</select>
+										</h:selectOneMenu>
 									</div>
 									<div class="form-group">
 										<label>Birthday Date</label> <br />
-										<p:inputText  value="#{registerBean.BirthdayDate}" id="BirthdayDate" class="form-control"
-											type="date" />
+										<p:inputText type="date" value="#{testBean.birthDate}"
+											id="BirthDate" class="form-control" />
 									</div>
 									<div class="form-group">
 										<label>City</label> <br />
-										<p:inputText  value="#{registerBean.City}" id="City" class="form-control" />
+										<p:inputText value="#{testBean.city}" id="City"
+											class="form-control" />
 									</div>
 									<div class="form-group">
 										<label>Home Address</label> <br />
-										<p:inputText value="#{registerBean.HomeAddress}" id="HomeAddress" class="form-control" />
+										<p:inputText value="#{testBean.homeAddress}" id="HomeAddress"
+											class="form-control" />
 									</div>
 									<div class="form-group">
 										<label>Phone Number</label> <br />
-										<p:inputText value="#{registerBean.PhoneNumber}" id="PhoneNumber" class="form-control" />
+										<p:inputText value="#{testBean.phoneNumber}" id="PhoneNumber"
+											class="form-control" />
 									</div>
 									<div class="form-group">
-										<label>Civil Status</label> <br /> <select name="CivilStatus"
-											class="form-control">
+										<label>Civil Status</label> <br />
+										<h:selectOneMenu value="#{testBean.civilStatus}"
+											name="CivilStatus" class="form-control">
+											<f:selectItem itemLabel="---" noSelectionOption="true" />
+											<f:selectItem itemValue="Single" itemLabel="Single" />
+											<f:selectItem itemValue="Engaged" itemLabel="Engaged" />
+											<f:selectItem itemValue="Married" itemLabel="Married" />
+											<f:selectItem itemValue="Divorced" itemLabel="Divorced" />
 
-											<option value="" disabled="disabled" selected="selected">Select
-												your option</option>
-											<option value="Single">Single</option>
-											<option value="Engaged">Engaged</option>
-											<option value="Divorced">Divorced</option>
-
-											<option value="Married">Married</option>
-
-										</select>
+										</h:selectOneMenu>
 									</div>
 									<!--Role-->
 									<div class="form-group">
-										<label>Role</label> <select name="Role" class="form-control"
-											id="RoleDiv">
-											<option value="" disabled="disabled" selected="selected">Select
-												your option</option>
-											<option value="Patient">Patient</option>
-											<option value="Doctor">Doctor</option>
+										<label>Role</label>
+										<h:selectOneMenu name="Role" class="form-control"
+											onchange="THEFUNCTION(this.selectedIndex);"
+											value="#{testBean.role}" hideNoSelectionOption="false">
+											<f:selectItem itemLabel="---" noSelectionOption="true" />
+											<f:selectItem itemValue="Doctor" itemLabel="Doctor" />
+											<f:selectItem itemValue="Patient" itemLabel="Patient" />
 
-										</select>
+
+										</h:selectOneMenu>
 									</div>
 									<!--Patient div-->
 									<div style="display: none" id="DivPatient">
 										<div class="form-group">
 											<label>Allergies</label> <br />
-											<p:inputText value="#{registerBean.Allergies}" id="Allergies" class="form-control" />
+											<p:inputText value="#{testBean.allergies}" id="Allergies"
+												class="form-control" />
 										</div>
 										<div class="form-group">
 											<label>Profession</label> <br />
-											<p:inputText value="#{registerBean.Profession}" id="Profession" class="form-control" />
+											<p:inputText value="#{testBean.profession}" id="Profession"
+												class="form-control" />
 										</div>
 										<div class="form-group">
 											<label>Special Requirements</label> <br />
-											<p:inputText value="#{registerBean.SpecialReq}" id="SpecialReq" class="form-control" />
+											<p:inputText value="#{testBean.specialReq}" id="SpecialReq"
+												class="form-control" />
 										</div>
 									</div>
 
 									<!--Doctor div-->
 									<div style="display: none" id="DivDoctor">
 										<div class="form-group">
-											<label>Speciality</label> <select name="Speciality"
-												class="form-control">
-												<br />
-												<option value="" disabled="disabled" selected="selected">Select
-													your option</option>
-
-												<option value="Dentistry" selected="selected">Dentistry</option>
-												<option value="Cardiology">Cardiology</option>
-												<option value="Neurology">Neurology</option>
-
-
-											</select>
+											<label>Location</label> <br />
+											<p:inputText value="#{testBean.location}" id="Location"
+												class="form-control" />
 										</div>
 										<div class="form-group">
-											<label>Surgeon</label> <select name="Surgeon"
+
+											<label>Speciality</label>
+											<h:selectOneMenu name="Speciality"
+												value="#{testBean.speciality}" class="form-control">
+
+												<f:selectItem itemLabel="---" noSelectionOption="true" />
+												<f:selectItem itemValue="Dentistry" itemLabel="Dentistry" />
+												<f:selectItem itemValue="Cardiology" itemLabel="Cardiology" />
+												<f:selectItem itemValue="Neurology" itemLabel="Neurology" />
+
+
+											</h:selectOneMenu>
+										</div>
+										<div class="form-group">
+											<label>Surgeon</label>
+											<h:selectOneMenu name="Surgeon" value="#{testBean.surgeon}"
 												class="form-control">
-												<br />
-												<option value="" disabled="disabled" selected="selected">Select
-													your option</option>
-
-												<option value="Yes" selected="selected">Yes</option>
-												<option value="No">No</option>
-
-											</select>
+												<f:selectItem itemLabel="---" noSelectionOption="true" />
+												<f:selectItem itemValue="Yes" itemLabel="Yes" />
+												<f:selectItem itemValue="No" itemLabel="No" />
+											</h:selectOneMenu>
 
 										</div>
 
@@ -149,30 +159,33 @@
 
 									<!--JavaScript-->
 									<script type="text/javascript">
-                            $('#RoleDiv').on('change', function() {
-                            	  //  alert( this.value ); // or $(this).val()
-                            	  if(this.value == "Patient") {
-                            	    $('#DivPatient').show();
-                            	    $('#DivDoctor').hide();
-                            	  } else  if(this.value == "Doctor") {
-                            	    $('#DivPatient').hide();
-                            	    $('#DivDoctor').show();
-                            	  }
-                            	});
+                                function THEFUNCTION(i) {
+                                    var DivPatient = document.getElementById('DivPatient');
+                                    var DivDoctor = document.getElementById('DivDoctor');
+
+
+                                    switch (i) {
+                                        case 1: DivDoctor.style.display = ''; DivPatient.style.display = 'none'; break;
+                                        case 2: DivPatient.style.display = ''; DivDoctor.style.display = 'none'; break;
+                                        default: DivPatient.style.display = 'none'; DivDoctor.style.display = 'none'; break;
+
+                                    }
+                                }
                             </script>
 
 									<div id="pass-info" class="clearfix"></div>
 									<!--Checkbox obligatoire-->
 									<div class="form-group">
 
-										<h:selectBooleanCheckbox value="TermsAndConditions"
-											required="required" />
+										<h:selectBooleanCheckbox
+											value="#{testBean.termsAndConditions}" required="required" />
 										<label>Terms and Conditions</label>
 
 									</div>
 
 									<div class="form-group text-center add_top_30">
-										<p:commandButton class="btn_1" value="Register" />
+										<p:commandButton class="btn_1" value="Register"
+											action="#{testBean.doRegister()}" />
 									</div>
 
 
@@ -189,8 +202,8 @@
 				</div>
 			</div>
 		</div>
-	
-	
+
+
 	</ui:define>
 
 </ui:composition>

@@ -28,6 +28,7 @@ public class User implements Serializable {
 	@Column(name="Allergies")
 	private String allergies;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="BirthDate")
 	private Date birthDate;
 
@@ -85,6 +86,7 @@ public class User implements Serializable {
 	@Column(name="Profession")
 	private String profession;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="RegistrationDate")
 	private Date registrationDate;
 

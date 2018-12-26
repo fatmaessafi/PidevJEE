@@ -51,7 +51,6 @@ public class UserService implements UserServiceRemote, UserServiceLocal {
 
 	@Override
 	public void Register(RegisterVM u) {
-
 		Client client=ClientBuilder.newClient();
 		WebTarget target=client.target("http://localhost:21514/api/Register");
 		Gson j=new Gson();
@@ -59,7 +58,7 @@ public class UserService implements UserServiceRemote, UserServiceLocal {
 		Response response=target.request().post(Entity.json(u));
 		String result=response.readEntity(String.class);
 		u = j.fromJson(result, new TypeToken<RegisterVM>(){}.getType());
-		System.out.println(result);
+		System.out.println("result="+result);
 		response.close();
 		
 	}

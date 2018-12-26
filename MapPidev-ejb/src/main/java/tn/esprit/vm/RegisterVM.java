@@ -1,8 +1,9 @@
 package tn.esprit.vm;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class RegisterVM {
+public class RegisterVM implements Serializable {
 	private String FirstName;
 
 	private String LastName;
@@ -212,6 +213,17 @@ public class RegisterVM {
 
 	public void setSurgeon(String surgeon) {
 		Surgeon = surgeon;
+	}
+
+	@Override
+	public String toString() {
+		return "RegisterVM [FirstName=" + FirstName + ", LastName=" + LastName + ", Email=" + Email + ", Password="
+				+ Password + ", ConfirmPassword=" + ConfirmPassword + ", PhoneNumber=" + PhoneNumber + ", Gender="
+				+ Gender + ", BirthDate=" + BirthDate + ", City=" + City + ", HomeAddress=" + HomeAddress
+				+ ", CivilStatus=" + CivilStatus + ", Enabled=" + Enabled + ", RegistrationDate=" + RegistrationDate
+				+ ", TermsAndConditions=" + TermsAndConditions + ", Role=" + Role + ", Allergies=" + Allergies
+				+ ", Profession=" + Profession + ", SpecialReq=" + SpecialReq + ", Speciality=" + Speciality
+				+ ", Location=" + Location + ", Surgeon=" + Surgeon + "]";
 	}
 
 	public RegisterVM(String firstName, String lastName, String email, String password, String confirmPassword,
