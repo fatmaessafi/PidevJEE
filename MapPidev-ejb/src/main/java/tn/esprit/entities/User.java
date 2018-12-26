@@ -2,6 +2,8 @@ package tn.esprit.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import java.util.Date;
 import java.util.List;
 
 
@@ -27,7 +29,7 @@ public class User implements Serializable {
 	private String allergies;
 
 	@Column(name="BirthDate")
-	private String birthDate;
+	private Date birthDate;
 
 	@Column(name="City")
 	private String city;
@@ -66,7 +68,7 @@ public class User implements Serializable {
 	private boolean lockoutEnabled;
 
 	@Column(name="LockoutEndDateUtc")
-	private String lockoutEndDateUtc;
+	private Date lockoutEndDateUtc;
 
 	@Column(name="Password")
 	private String password;
@@ -84,7 +86,7 @@ public class User implements Serializable {
 	private String profession;
 
 	@Column(name="RegistrationDate")
-	private String registrationDate;
+	private Date registrationDate;
 
 	@Column(name="SecurityStamp")
 	private String securityStamp;
@@ -171,11 +173,11 @@ public class User implements Serializable {
 		this.allergies = allergies;
 	}
 
-	public String getBirthDate() {
+	public Date getBirthDate() {
 		return this.birthDate;
 	}
 
-	public void setBirthDate(String birthDate) {
+	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
 
@@ -275,11 +277,11 @@ public class User implements Serializable {
 		this.lockoutEnabled = lockoutEnabled;
 	}
 
-	public String getLockoutEndDateUtc() {
+	public Date getLockoutEndDateUtc() {
 		return this.lockoutEndDateUtc;
 	}
 
-	public void setLockoutEndDateUtc(String lockoutEndDateUtc) {
+	public void setLockoutEndDateUtc(Date lockoutEndDateUtc) {
 		this.lockoutEndDateUtc = lockoutEndDateUtc;
 	}
 
@@ -323,11 +325,11 @@ public class User implements Serializable {
 		this.profession = profession;
 	}
 
-	public String getRegistrationDate() {
+	public Date getRegistrationDate() {
 		return this.registrationDate;
 	}
 
-	public void setRegistrationDate(String registrationDate) {
+	public void setRegistrationDate(Date registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 

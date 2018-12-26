@@ -38,7 +38,8 @@ public class UserBean {
  		System.out.println("ok3");
  		return navigateTo;
      }
-
+     
+     
 	public String getEmail() {
 		return email;
 	}

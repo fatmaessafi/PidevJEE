@@ -14,6 +14,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import tn.esprit.entities.User;
+import tn.esprit.vm.RegisterVM;
+
 
 /**
  * Session Bean implementation class UserService
@@ -42,14 +44,23 @@ public class UserService implements UserServiceRemote, UserServiceLocal {
 		Response response=target.request().post(Entity.json(u));
 		String result=response.readEntity(String.class);
 		u = j.fromJson(result, new TypeToken<User>(){}.getType());
-		System.out.println(u.getUserName());
+		System.out.println(u.getEmail());
 		response.close();
 		return u;
 	}
 
 	@Override
-	public void Register(User u) {
-		// TODO Auto-generated method stub
+	public void Register(RegisterVM u) {
+
+		Client client=ClientBuilder.newClient();
+		WebTarget target=client.target("http://localhost:21514/api/Register");
+		Gson j=new Gson();
+		ObjectMapper mapper = new ObjectMapper();
+		Response response=target.request().post(Entity.json(u));
+		String result=response.readEntity(String.class);
+		u = j.fromJson(result, new TypeToken<RegisterVM>(){}.getType());
+		System.out.println(result);
+		response.close();
 		
 	}
 
