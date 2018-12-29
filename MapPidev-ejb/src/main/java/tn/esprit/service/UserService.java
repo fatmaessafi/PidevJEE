@@ -61,6 +61,7 @@ public class UserService implements UserServiceRemote, UserServiceLocal {
 		System.out.println("result="+result);
 		response.close();
 		
+		System.out.println("REGISTER");
 	}
 
 }

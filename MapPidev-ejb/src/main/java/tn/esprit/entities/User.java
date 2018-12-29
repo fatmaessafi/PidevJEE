@@ -3,6 +3,10 @@ package tn.esprit.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +33,8 @@ public class User implements Serializable {
 	private String allergies;
 
 	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="UTC")
+	@JsonSerialize(as = Date.class)
 	@Column(name="BirthDate")
 	private Date birthDate;
 
@@ -86,7 +92,6 @@ public class User implements Serializable {
 	@Column(name="Profession")
 	private String profession;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="RegistrationDate")
 	private Date registrationDate;
 

@@ -3,7 +3,14 @@ package tn.esprit.vm;
 import java.io.Serializable;
 import java.util.Date;
 
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 public class RegisterVM implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	private String FirstName;
 
 	private String LastName;
@@ -17,7 +24,11 @@ public class RegisterVM implements Serializable {
 	private String PhoneNumber;
 
 	private String Gender;
-
+	
+	@JsonSerialize(as = Date.class)
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="UTC")
+	@JsonDeserialize(as = Date.class)
+	
 	private Date BirthDate;
 
 	private String City;

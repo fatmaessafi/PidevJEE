@@ -3,6 +3,7 @@ package tn.esprit.bean;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import javax.ejb.EJB;
 
@@ -218,10 +219,12 @@ public class testBean {
 		user.setLastName(lastName);
 		user.setEmail(email);
 		user.setPassword(password);
-		user.setPassword(confirmPassword);
+		user.setConfirmPassword(confirmPassword);
 		user.setPhoneNumber(phoneNumber);
 		user.setGender(gender);
-		SimpleDateFormat simpleFormat = new SimpleDateFormat("dd/MM/yyyy");
+		System.out.print("birthdate="+birthDate);
+		SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd");
+		simpleFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 		user.setBirthDate(simpleFormat.parse(birthDate));
 		user.setCity(city);
 		user.setHomeAddress(homeAddress);
@@ -234,8 +237,8 @@ public class testBean {
 		user.setSpeciality(speciality);
 		user.setLocation(location);
 		user.setSurgeon(surgeon);
-		userServiceLocal.Register(user);
 		System.out.println(user);
+		userServiceLocal.Register(user);
 		System.out.println("ok register");
 		navigateTo = "/xhtml/login?faces-redirect=true";
 
