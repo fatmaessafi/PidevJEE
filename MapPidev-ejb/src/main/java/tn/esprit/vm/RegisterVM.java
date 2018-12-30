@@ -3,8 +3,8 @@ package tn.esprit.vm;
 import java.io.Serializable;
 import java.util.Date;
 
-
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -24,11 +24,11 @@ public class RegisterVM implements Serializable {
 	private String PhoneNumber;
 
 	private String Gender;
-	
+
 	@JsonSerialize(as = Date.class)
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="UTC")
-	@JsonDeserialize(as = Date.class)
-	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "GMT")
+	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
+
 	private Date BirthDate;
 
 	private String City;
@@ -38,6 +38,10 @@ public class RegisterVM implements Serializable {
 	private String CivilStatus;
 
 	private Boolean Enabled;
+	@JsonSerialize(as = Date.class)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "GMT")
+	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
+	@JsonIgnore
 	private Date RegistrationDate;
 
 	private Boolean TermsAndConditions;
@@ -264,9 +268,8 @@ public class RegisterVM implements Serializable {
 		Location = location;
 		Surgeon = surgeon;
 	}
-	
-	public RegisterVM()
-	{
-		
+
+	public RegisterVM() {
+
 	}
 }

@@ -1,13 +1,16 @@
 package tn.esprit.bean;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import tn.esprit.entities.User;
 import tn.esprit.service.UserServiceLocal;
+
 
 @ManagedBean
 @SessionScoped
@@ -21,9 +24,15 @@ public class UserBean {
 	private boolean loggedIn;
 	private tn.esprit.entities.User u=new tn.esprit.entities.User();
   
+	public UserBean()
+	{
+		
+	}
      public String doLogins(){
     	 String navigateTo="";
  		u=userServiceLocal.Login(email, mdp, true);
+ 		System.out.println("Email="+email+" Mdp="+mdp);
+ 		System.out.println("User="+u);
  		System.out.println("ok1");
  		if(u!=null){
  			System.out.println("ok2");
@@ -88,7 +97,6 @@ public class UserBean {
 		this.u = u;
 	}
     
-	
 	
 
 }

@@ -4,608 +4,473 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.Date;
 import java.util.List;
-
+import tn.esprit.vm.*;
 
 /**
  * The persistent class for the Users database table.
  * 
  */
 @Entity
-@Table(name="Users")
-@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+@Table(name = "Users")
+@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="Id")
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Id")
+	private int Id;
 
-	@Column(name="AccessFailedCount")
-	private int accessFailedCount;
+	@Column(name = "AccessFailedCount")
+	private int AccessFailedCount;
 
-	@Column(name="Allergies")
-	private String allergies;
+	@Column(name = "Allergies")
+	private String Allergies;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="UTC")
-	@JsonSerialize(as = Date.class)
-	@Column(name="BirthDate")
-	private Date birthDate;
+	
 
-	@Column(name="City")
-	private String city;
+	@Column(name = "City")
+	private String City;
 
-	@Column(name="CivilStatus")
-	private String civilStatus;
+	@Column(name = "CivilStatus")
+	private String CivilStatus;
 
-	@Column(name="Discriminator")
-	private String discriminator;
+	@Column(name = "Discriminator")
+	private String Discriminator;
 
-	@Column(name="Email")
-	private String email;
+	@Column(name = "Email")
+	private String Email;
 
-	@Column(name="EmailConfirmed")
-	private boolean emailConfirmed;
+	@Column(name = "EmailConfirmed")
+	private boolean EmailConfirmed;
 
-	@Column(name="Enabled")
-	private boolean enabled;
+	@Column(name = "Enabled")
+	private boolean Enabled;
 
-	@Column(name="FirstName")
-	private String firstName;
+	@Column(name = "FirstName")
+	private String FirstName;
 
-	@Column(name="Gender")
-	private String gender;
+	@Column(name = "Gender")
+	private String Gender;
 
-	@Column(name="HomeAddress")
-	private String homeAddress;
+	@Column(name = "HomeAddress")
+	private String HomeAddress;
 
-	@Column(name="LastName")
-	private String lastName;
+	@Column(name = "LastName")
+	private String LastName;
 
-	@Column(name="Location")
-	private String location;
+	@Column(name = "Location")
+	private String Location;
 
-	@Column(name="LockoutEnabled")
-	private boolean lockoutEnabled;
+	@Column(name = "LockoutEnabled")
+	private boolean LockoutEnabled;
 
-	@Column(name="LockoutEndDateUtc")
-	private Date lockoutEndDateUtc;
+	@Column(name = "LockoutEndDateUtc")
+	private Date LockoutEndDateUtc;
 
-	@Column(name="Password")
-	private String password;
+	@Column(name = "Password")
+	private String Password;
 
-	@Column(name="PasswordHash")
-	private String passwordHash;
+	@Column(name = "PasswordHash")
+	private String PasswordHash;
 
-	@Column(name="PhoneNumber")
-	private String phoneNumber;
+	@Column(name = "PhoneNumber")
+	private String PhoneNumber;
 
-	@Column(name="PhoneNumberConfirmed")
-	private boolean phoneNumberConfirmed;
+	@Column(name = "PhoneNumberConfirmed")
+	private boolean PhoneNumberConfirmed;
 
-	@Column(name="Profession")
-	private String profession;
+	@Column(name = "Profession")
+	private String Profession;
 
-	@Column(name="RegistrationDate")
-	private Date registrationDate;
 
-	@Column(name="SecurityStamp")
-	private String securityStamp;
+	@Column(name = "SecurityStamp")
+	private String SecurityStamp;
 
-	@Column(name="Speciality")
-	private String speciality;
+	@Column(name = "Speciality")
+	private String Speciality;
 
-	@Column(name="SpecialReq")
-	private String specialReq;
+	@Column(name = "SpecialReq")
+	private String SpecialReq;
 
-	@Column(name="Surgeon")
-	private boolean surgeon;
+	@Column(name = "Surgeon")
+	private boolean Surgeon;
 
-	@Column(name="TwoFactorEnabled")
-	private boolean twoFactorEnabled;
+	@Column(name = "TwoFactorEnabled")
+	private boolean TwoFactorEnabled;
 
-	@Column(name="UserName")
-	private String userName;
+	@Column(name = "UserName")
+	private String UserName;
 
-	//bi-directional many-to-one association to Analytic
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to Analytic
+	@OneToMany(mappedBy = "user")
 	private List<Analytic> analytics;
 
-	//bi-directional many-to-one association to Appointment
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to Appointment
+	@OneToMany(mappedBy = "user")
 	private List<Appointment> appointments;
 
-	//bi-directional many-to-one association to CustomUserClaim
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to CustomUserClaim
+	@OneToMany(mappedBy = "user")
 	private List<CustomUserClaim> customUserClaims;
 
-	//bi-directional many-to-one association to CustomUserLogin
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to CustomUserLogin
+	@OneToMany(mappedBy = "user")
 	private List<CustomUserLogin> customUserLogins;
 
-	//bi-directional many-to-one association to CustomUserRole
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to CustomUserRole
+	@OneToMany(mappedBy = "user")
 	private List<CustomUserRole> customUserRoles;
 
-	//bi-directional many-to-one association to DayOff
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to DayOff
+	@OneToMany(mappedBy = "user")
 	private List<DayOff> dayOffs;
 
-	//bi-directional many-to-one association to Event
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to Event
+	@OneToMany(mappedBy = "user")
 	private List<Event> events;
 
-	//bi-directional many-to-one association to Message
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to Message
+	@OneToMany(mappedBy = "user")
 	private List<Message> messages;
 
-	//bi-directional many-to-one association to Treatment
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to Treatment
+	@OneToMany(mappedBy = "user")
 	private List<Treatment> treatments;
 
-	//bi-directional many-to-one association to VisitReason
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to VisitReason
+	@OneToMany(mappedBy = "user")
 	private List<VisitReason> visitReasons;
 
 	public User() {
 	}
 
 	public int getId() {
-		return this.id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
+		return Id;
 	}
 
 	public int getAccessFailedCount() {
-		return this.accessFailedCount;
+		return AccessFailedCount;
 	}
 
 	public void setAccessFailedCount(int accessFailedCount) {
-		this.accessFailedCount = accessFailedCount;
+		AccessFailedCount = accessFailedCount;
 	}
 
 	public String getAllergies() {
-		return this.allergies;
+		return Allergies;
 	}
 
 	public void setAllergies(String allergies) {
-		this.allergies = allergies;
+		Allergies = allergies;
 	}
-
-	public Date getBirthDate() {
-		return this.birthDate;
-	}
-
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
-	}
+	
 
 	public String getCity() {
-		return this.city;
+		return City;
 	}
 
 	public void setCity(String city) {
-		this.city = city;
+		City = city;
 	}
 
 	public String getCivilStatus() {
-		return this.civilStatus;
+		return CivilStatus;
 	}
 
 	public void setCivilStatus(String civilStatus) {
-		this.civilStatus = civilStatus;
+		CivilStatus = civilStatus;
 	}
 
 	public String getDiscriminator() {
-		return this.discriminator;
+		return Discriminator;
 	}
 
 	public void setDiscriminator(String discriminator) {
-		this.discriminator = discriminator;
+		Discriminator = discriminator;
 	}
 
 	public String getEmail() {
-		return this.email;
+		return Email;
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		Email = email;
 	}
 
-	public boolean getEmailConfirmed() {
-		return this.emailConfirmed;
+	public boolean isEmailConfirmed() {
+		return EmailConfirmed;
 	}
 
 	public void setEmailConfirmed(boolean emailConfirmed) {
-		this.emailConfirmed = emailConfirmed;
+		EmailConfirmed = emailConfirmed;
 	}
 
-	public boolean getEnabled() {
-		return this.enabled;
+	public boolean isEnabled() {
+		return Enabled;
 	}
 
 	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+		Enabled = enabled;
 	}
 
 	public String getFirstName() {
-		return this.firstName;
+		return FirstName;
 	}
 
 	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+		FirstName = firstName;
 	}
 
 	public String getGender() {
-		return this.gender;
+		return Gender;
 	}
 
 	public void setGender(String gender) {
-		this.gender = gender;
+		Gender = gender;
 	}
 
 	public String getHomeAddress() {
-		return this.homeAddress;
+		return HomeAddress;
 	}
 
 	public void setHomeAddress(String homeAddress) {
-		this.homeAddress = homeAddress;
+		HomeAddress = homeAddress;
 	}
 
 	public String getLastName() {
-		return this.lastName;
+		return LastName;
 	}
 
 	public void setLastName(String lastName) {
-		this.lastName = lastName;
+		LastName = lastName;
 	}
 
 	public String getLocation() {
-		return this.location;
+		return Location;
 	}
 
 	public void setLocation(String location) {
-		this.location = location;
+		Location = location;
 	}
 
-	public boolean getLockoutEnabled() {
-		return this.lockoutEnabled;
+	public boolean isLockoutEnabled() {
+		return LockoutEnabled;
 	}
 
 	public void setLockoutEnabled(boolean lockoutEnabled) {
-		this.lockoutEnabled = lockoutEnabled;
+		LockoutEnabled = lockoutEnabled;
 	}
 
 	public Date getLockoutEndDateUtc() {
-		return this.lockoutEndDateUtc;
+		return LockoutEndDateUtc;
 	}
 
 	public void setLockoutEndDateUtc(Date lockoutEndDateUtc) {
-		this.lockoutEndDateUtc = lockoutEndDateUtc;
+		LockoutEndDateUtc = lockoutEndDateUtc;
 	}
 
 	public String getPassword() {
-		return this.password;
+		return Password;
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		Password = password;
 	}
 
 	public String getPasswordHash() {
-		return this.passwordHash;
+		return PasswordHash;
 	}
 
 	public void setPasswordHash(String passwordHash) {
-		this.passwordHash = passwordHash;
+		PasswordHash = passwordHash;
 	}
 
 	public String getPhoneNumber() {
-		return this.phoneNumber;
+		return PhoneNumber;
 	}
 
 	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+		PhoneNumber = phoneNumber;
 	}
 
-	public boolean getPhoneNumberConfirmed() {
-		return this.phoneNumberConfirmed;
+	public boolean isPhoneNumberConfirmed() {
+		return PhoneNumberConfirmed;
 	}
 
 	public void setPhoneNumberConfirmed(boolean phoneNumberConfirmed) {
-		this.phoneNumberConfirmed = phoneNumberConfirmed;
+		PhoneNumberConfirmed = phoneNumberConfirmed;
 	}
 
 	public String getProfession() {
-		return this.profession;
+		return Profession;
 	}
 
 	public void setProfession(String profession) {
-		this.profession = profession;
+		Profession = profession;
 	}
 
-	public Date getRegistrationDate() {
-		return this.registrationDate;
-	}
-
-	public void setRegistrationDate(Date registrationDate) {
-		this.registrationDate = registrationDate;
-	}
+	
 
 	public String getSecurityStamp() {
-		return this.securityStamp;
+		return SecurityStamp;
 	}
 
 	public void setSecurityStamp(String securityStamp) {
-		this.securityStamp = securityStamp;
+		SecurityStamp = securityStamp;
 	}
 
 	public String getSpeciality() {
-		return this.speciality;
+		return Speciality;
 	}
 
 	public void setSpeciality(String speciality) {
-		this.speciality = speciality;
+		Speciality = speciality;
 	}
 
 	public String getSpecialReq() {
-		return this.specialReq;
+		return SpecialReq;
 	}
 
 	public void setSpecialReq(String specialReq) {
-		this.specialReq = specialReq;
+		SpecialReq = specialReq;
 	}
 
-	public boolean getSurgeon() {
-		return this.surgeon;
+	public boolean isSurgeon() {
+		return Surgeon;
 	}
 
 	public void setSurgeon(boolean surgeon) {
-		this.surgeon = surgeon;
+		Surgeon = surgeon;
 	}
 
-	public boolean getTwoFactorEnabled() {
-		return this.twoFactorEnabled;
+	public boolean isTwoFactorEnabled() {
+		return TwoFactorEnabled;
 	}
 
 	public void setTwoFactorEnabled(boolean twoFactorEnabled) {
-		this.twoFactorEnabled = twoFactorEnabled;
+		TwoFactorEnabled = twoFactorEnabled;
 	}
 
 	public String getUserName() {
-		return this.userName;
+		return UserName;
 	}
 
 	public void setUserName(String userName) {
-		this.userName = userName;
+		UserName = userName;
 	}
 
 	public List<Analytic> getAnalytics() {
-		return this.analytics;
+		return analytics;
 	}
 
 	public void setAnalytics(List<Analytic> analytics) {
 		this.analytics = analytics;
 	}
 
-	public Analytic addAnalytic(Analytic analytic) {
-		getAnalytics().add(analytic);
-		analytic.setUser(this);
-
-		return analytic;
-	}
-
-	public Analytic removeAnalytic(Analytic analytic) {
-		getAnalytics().remove(analytic);
-		analytic.setUser(null);
-
-		return analytic;
-	}
-
 	public List<Appointment> getAppointments() {
-		return this.appointments;
+		return appointments;
 	}
 
 	public void setAppointments(List<Appointment> appointments) {
 		this.appointments = appointments;
 	}
 
-	public Appointment addAppointment(Appointment appointment) {
-		getAppointments().add(appointment);
-		appointment.setUser(this);
-
-		return appointment;
-	}
-
-	public Appointment removeAppointment(Appointment appointment) {
-		getAppointments().remove(appointment);
-		appointment.setUser(null);
-
-		return appointment;
-	}
-
 	public List<CustomUserClaim> getCustomUserClaims() {
-		return this.customUserClaims;
+		return customUserClaims;
 	}
 
 	public void setCustomUserClaims(List<CustomUserClaim> customUserClaims) {
 		this.customUserClaims = customUserClaims;
 	}
 
-	public CustomUserClaim addCustomUserClaim(CustomUserClaim customUserClaim) {
-		getCustomUserClaims().add(customUserClaim);
-		customUserClaim.setUser(this);
-
-		return customUserClaim;
-	}
-
-	public CustomUserClaim removeCustomUserClaim(CustomUserClaim customUserClaim) {
-		getCustomUserClaims().remove(customUserClaim);
-		customUserClaim.setUser(null);
-
-		return customUserClaim;
-	}
-
 	public List<CustomUserLogin> getCustomUserLogins() {
-		return this.customUserLogins;
+		return customUserLogins;
 	}
 
 	public void setCustomUserLogins(List<CustomUserLogin> customUserLogins) {
 		this.customUserLogins = customUserLogins;
 	}
 
-	public CustomUserLogin addCustomUserLogin(CustomUserLogin customUserLogin) {
-		getCustomUserLogins().add(customUserLogin);
-		customUserLogin.setUser(this);
-
-		return customUserLogin;
-	}
-
-	public CustomUserLogin removeCustomUserLogin(CustomUserLogin customUserLogin) {
-		getCustomUserLogins().remove(customUserLogin);
-		customUserLogin.setUser(null);
-
-		return customUserLogin;
-	}
-
 	public List<CustomUserRole> getCustomUserRoles() {
-		return this.customUserRoles;
+		return customUserRoles;
 	}
 
 	public void setCustomUserRoles(List<CustomUserRole> customUserRoles) {
 		this.customUserRoles = customUserRoles;
 	}
 
-	public CustomUserRole addCustomUserRole(CustomUserRole customUserRole) {
-		getCustomUserRoles().add(customUserRole);
-		customUserRole.setUser(this);
-
-		return customUserRole;
-	}
-
-	public CustomUserRole removeCustomUserRole(CustomUserRole customUserRole) {
-		getCustomUserRoles().remove(customUserRole);
-		customUserRole.setUser(null);
-
-		return customUserRole;
-	}
-
 	public List<DayOff> getDayOffs() {
-		return this.dayOffs;
+		return dayOffs;
 	}
 
 	public void setDayOffs(List<DayOff> dayOffs) {
 		this.dayOffs = dayOffs;
 	}
 
-	public DayOff addDayOff(DayOff dayOff) {
-		getDayOffs().add(dayOff);
-		dayOff.setUser(this);
-
-		return dayOff;
-	}
-
-	public DayOff removeDayOff(DayOff dayOff) {
-		getDayOffs().remove(dayOff);
-		dayOff.setUser(null);
-
-		return dayOff;
-	}
-
 	public List<Event> getEvents() {
-		return this.events;
+		return events;
 	}
 
 	public void setEvents(List<Event> events) {
 		this.events = events;
 	}
 
-	public Event addEvent(Event event) {
-		getEvents().add(event);
-		event.setUser(this);
-
-		return event;
-	}
-
-	public Event removeEvent(Event event) {
-		getEvents().remove(event);
-		event.setUser(null);
-
-		return event;
-	}
-
 	public List<Message> getMessages() {
-		return this.messages;
+		return messages;
 	}
 
 	public void setMessages(List<Message> messages) {
 		this.messages = messages;
 	}
 
-	public Message addMessage(Message message) {
-		getMessages().add(message);
-		message.setUser(this);
-
-		return message;
-	}
-
-	public Message removeMessage(Message message) {
-		getMessages().remove(message);
-		message.setUser(null);
-
-		return message;
-	}
-
 	public List<Treatment> getTreatments() {
-		return this.treatments;
+		return treatments;
 	}
 
 	public void setTreatments(List<Treatment> treatments) {
 		this.treatments = treatments;
 	}
 
-	public Treatment addTreatment(Treatment treatment) {
-		getTreatments().add(treatment);
-		treatment.setUser(this);
-
-		return treatment;
-	}
-
-	public Treatment removeTreatment(Treatment treatment) {
-		getTreatments().remove(treatment);
-		treatment.setUser(null);
-
-		return treatment;
-	}
-
 	public List<VisitReason> getVisitReasons() {
-		return this.visitReasons;
+		return visitReasons;
 	}
 
 	public void setVisitReasons(List<VisitReason> visitReasons) {
 		this.visitReasons = visitReasons;
 	}
 
-	public VisitReason addVisitReason(VisitReason visitReason) {
-		getVisitReasons().add(visitReason);
-		visitReason.setUser(this);
-
-		return visitReason;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
-	public VisitReason removeVisitReason(VisitReason visitReason) {
-		getVisitReasons().remove(visitReason);
-		visitReason.setUser(null);
+	public void setId(int id) {
+		Id = id;
+	}
 
-		return visitReason;
+	@Override
+	public String toString() {
+		return "User [Id=" + Id + ", AccessFailedCount=" + AccessFailedCount + ", Allergies=" + Allergies
+				+ ", City=" + City + ", CivilStatus=" + CivilStatus + ", Discriminator="
+				+ Discriminator + ", Email=" + Email + ", EmailConfirmed=" + EmailConfirmed + ", Enabled=" + Enabled
+				+ ", FirstName=" + FirstName + ", Gender=" + Gender + ", HomeAddress=" + HomeAddress + ", LastName="
+				+ LastName + ", Location=" + Location + ", LockoutEnabled=" + LockoutEnabled + ", LockoutEndDateUtc="
+				+ LockoutEndDateUtc + ", Password=" + Password + ", PasswordHash=" + PasswordHash + ", PhoneNumber="
+				+ PhoneNumber + ", PhoneNumberConfirmed=" + PhoneNumberConfirmed + ", Profession=" + Profession
+				+ ", SecurityStamp=" + SecurityStamp + ", Speciality="
+				+ Speciality + ", SpecialReq=" + SpecialReq + ", Surgeon=" + Surgeon + ", TwoFactorEnabled="
+				+ TwoFactorEnabled + ", UserName=" + UserName + ", analytics=" + analytics + ", appointments="
+				+ appointments + ", customUserClaims=" + customUserClaims + ", customUserLogins=" + customUserLogins
+				+ ", customUserRoles=" + customUserRoles + ", dayOffs=" + dayOffs + ", events=" + events + ", messages="
+				+ messages + ", treatments=" + treatments + ", visitReasons=" + visitReasons + "]";
 	}
 
 }
