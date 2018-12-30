@@ -10,9 +10,7 @@ import tn.esprit.entities.Appointment;
 @Remote
 public interface AppointmetServiceRemote {
 	
-	public void getAllAppointments();
-	public String getAllAppointment();
-	public List<Appointment> ConsommerAppointment();
+	public List<Appointment> getAllAppointments() ;
 	
 	
 

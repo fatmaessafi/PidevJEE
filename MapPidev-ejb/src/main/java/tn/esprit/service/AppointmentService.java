@@ -15,7 +15,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import tn.esprit.entities.Appointment;;
+import tn.esprit.entities.Appointment;
+import tn.esprit.entities.User;;
 
 /**
  * Session Bean implementation class MandateService
@@ -28,57 +29,21 @@ public class AppointmentService implements AppointmetServiceRemote, AppointmentS
      * Default constructor. 
      */
     public AppointmentService() {
-        // TODO Auto-generated constructor stub
+        // TODO Auto-generated constructo stub
     }
-
-	@Override
-	public void getAllAppointments() {
-		// TODO Auto-generated method stub
-		Client client=ClientBuilder.newClient();
-		WebTarget target=client.target("http://localhost:21514/api/GetAllAppointments");
-		Response response=target.request().get();
-		String result=response.readEntity(String.class);
-		System.out.println(result);
-		response.close();
-	}
-
-	@Override
-	public String getAllAppointment() {
-		// TODO Auto-generated method stub
-		Client client=ClientBuilder.newClient();
-		WebTarget target=client.target("http://localhost:21514/api/GetAllAppointments");
-		Response response=target.request().get();
-		String result=response.readEntity(String.class);
-		//Mandate r=response.readEntity(Mandate.class);
-	
-		System.out.println(result);
-		response.close();
-		return result;
-		
-	}
-
-	@Override
-	public List<Appointment> ConsommerAppointment() {
+    
+	public List<Appointment> getAllAppointments() {
 		Client client = ClientBuilder.newClient();
 		WebTarget target = client.target("http://localhost:21514/api/GetAllAppointments");
-
-		Response reponse = target.request(MediaType.APPLICATION_JSON).get();
-
+		Response reponse = target.request().get();
 		String result = reponse.readEntity(String.class);
-
-		System.out.println(result);
-
 		Gson j = new Gson();
-		List<Appointment> doctors = new ArrayList<Appointment>();
-
-		doctors = j.fromJson(result, new TypeToken<List<Appointment>>() {
-		}.getType());
-
-		//System.out.println(Appointment.get(0).);
-
-		reponse.close();
-	    return doctors;
-	}
+		List<Appointment>  patients=j.fromJson(result, new TypeToken<List<Appointment>>(){}.getType());
+		System.out.println("result="+result);
+		 reponse.close();      
+       return patients;
+    }
+    
 
 
 	

@@ -8,7 +8,7 @@
       
       <ui:define name="title">
       
-      <title>Epione</title>
+      <title>Dashboard - Levio</title>
       
       </ui:define>
       
@@ -23,16 +23,11 @@
 						<div class="row">
 						<div class="col-md-12">
 							<div class="table-responsive">
-								<h:dataTable  value="#{appointmentBean.listM}" var="cp" id="tab"> 
+								<h:dataTable class="table table-striped custom-table m-b-0 datatable" value="#{appointmentBean.GetAllappointments()}" var="cp" id="tab"> 
 								<h:column >
-				
-							<h:outputText value="#{cp.visitReason}" />
-							<h:outputText value="#{cp.appDate}" />
-							<h:outputText value="#{cp.appRate}" />
-							<h:outputText value="#{cp.patientId}" />
-								<h:outputText value="#{cp.patientId}" />
+				<h:outputText value="Cost" />
+				<h:outputText value="#{cp.appRate}" />
 				</h:column>
-				
 								
 								</h:dataTable>
 								</div>

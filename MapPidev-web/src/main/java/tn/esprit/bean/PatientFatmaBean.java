@@ -180,6 +180,8 @@ public class PatientFatmaBean {
 		this.listPatients = listPatients;
 	}
 
+	
+	
 	public List<User>  GetAllPatients() throws ParseException
 	{
 		listPatients = serviceFatmaPatientLocal.getAllPatients() ;
