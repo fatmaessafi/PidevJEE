@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="title">
+		<title>Login</title>
+	</ui:define>
+
+	<ui:define name="content">
+		<div class="bg_color_2">
+			<div class="container margin_60_35">
+				<div id="login-2">
+					<h1>Login to Epione</h1>
+					<h:form class="form-horizontal" role="form">
+
+								<h4>Create a new account.</h4>
+								<hr />
+								<div class="box_form">
+									<div class="form-group">
+										<label>Last Name</label> <br />
+										<h:inputText value="#{testBean.lastName}" id="LastName"
+											class="form-control" />
+
+									</div>
+									<div class="form-group">
+										<label>First Name</label> <br />
+										<h:inputText value="#{testBean.firstName}" id="FirstName"
+											class="form-control" />
+									</div>
+
+									<div class="form-group">
+										<label>Email</label> <br />
+										<h:inputText value="#{testBean.email}" id="Email"
+											class="form-control" />
+									</div>
+									<div class="form-group">
+										<label>Password</label> <br />
+										<h:inputSecret id="Password" class="form-control" />
+									</div>
+									<div class="form-group">
+										<label>Confirm Password</label> <br />
+										<h:inputSecret id="ConfirmPassword" class="form-control" />
+									</div>
+									<div class="form-group">
+										<label>Gender</label> <br /> <select name="Gender"
+											class="form-control">
+											<option value="" disabled="disabled" selected="selected">Select
+												your option</option>
+											<option value="Male">Male</option>
+											<option value="Female">Female</option>
+
+										</select>
+									</div>
+									<div class="form-group">
+										<label>Birthday Date</label> <br />
+										<h:inputText type="date" value="#{testBean.birthDate}"
+											id="BirthDate" class="form-control" />
+									</div>
+									<div class="form-group">
+										<label>City</label> <br />
+										<h:inputText value="#{testBean.city}" id="City"
+											class="form-control" />
+									</div>
+									<div class="form-group">
+										<label>Home Address</label> <br />
+										<h:inputText value="#{testBean.homeAddress}"
+											id="HomeAddress" class="form-control" />
+									</div>
+									<div class="form-group">
+										<label>Phone Number</label> <br />
+										<h:inputText value="#{testBean.phoneNumber}"
+											id="PhoneNumber" class="form-control" />
+									</div>
+									<div class="form-group">
+										<label>Civil Status</label> <br /> <select
+											value="#{testBean.civilStatus}" name="CivilStatus"
+											class="form-control">
+
+											<option value="" disabled="disabled" selected="selected">Select
+												your option</option>
+											<option value="Single">Single</option>
+											<option value="Engaged">Engaged</option>
+											<option value="Divorced">Divorced</option>
+
+											<option value="Married">Married</option>
+
+										</select>
+									</div>
+									<!--Role-->
+									<div class="form-group">
+										<label>Role</label> <select name="Role" class="form-control"
+											value="#{testBean.role}" id="RoleDiv">
+											<option value="" disabled="disabled" selected="selected">Select
+												your option</option>
+											<option value="Patient">Patient</option>
+											<option value="Doctor">Doctor</option>
+
+										</select>
+									</div>
+									<!--Patient div-->
+									<div style="display: none" id="DivPatient">
+										<div class="form-group">
+											<label>Allergies</label> <br />
+											<h:inputText value="#{testBean.allergies}" id="Allergies"
+												class="form-control" />
+										</div>
+										<div class="form-group">
+											<label>Profession</label> <br />
+											<h:inputText value="#{testBean.profession}"
+												id="Profession" class="form-control" />
+										</div>
+										<div class="form-group">
+											<label>Special Requirements</label> <br />
+											<h:inputText value="#{testBean.specialReq}"
+												id="SpecialReq" class="form-control" />
+										</div>
+									</div>
+
+									<!--Doctor div-->
+									<div style="display: none" id="DivDoctor">
+										<div class="form-group">
+											<label>Speciality</label> <select name="Speciality"
+												value="#{testBean.speciality}" class="form-control">
+												<br />
+												<option value="" disabled="disabled" selected="selected">Select
+													your option</option>
+
+												<option value="Dentistry" selected="selected">Dentistry</option>
+												<option value="Cardiology">Cardiology</option>
+												<option value="Neurology">Neurology</option>
+
+
+											</select>
+										</div>
+										<div class="form-group">
+											<label>Surgeon</label> <select name="Surgeon"
+												value="#{testBean.surgeon}" class="form-control">
+												<br />
+												<option value="" disabled="disabled" selected="selected">Select
+													your option</option>
+
+												<option value="Yes" selected="selected">Yes</option>
+												<option value="No">No</option>
+
+											</select>
+
+										</div>
+
+									</div>
+
+									<!--JavaScript-->
+									<script type="text/javascript">
+                            $('#RoleDiv').on('change', function() {
+                            	  //  alert( this.value ); // or $(this).val()
+                            	  if(this.value == "Patient") {
+                            	    $('#DivPatient').show();
+                            	    $('#DivDoctor').hide();
+                            	  } else  if(this.value == "Doctor") {
+                            	    $('#DivPatient').hide();
+                            	    $('#DivDoctor').show();
+                            	  }
+                            	});
+                            </script>
+
+									<div id="pass-info" class="clearfix"></div>
+									<!--Checkbox obligatoire-->
+									<div class="form-group">
+
+										<h:selectBooleanCheckbox value="TermsAndConditions"
+											required="required" />
+										<label>Terms and Conditions</label>
+
+									</div>
+
+									<div class="form-group text-center add_top_30">
+										<h:commandButton class="btn_1" value="Register"
+											action="#{testBean.doRegister()}" />
+									</div>
+
+
+								</div>
+								<p class="text-center">
+									<small>Make sure your informations are exact for a
+										better experience.</small>
+								</p>
+
+							</h:form>
+					<p class="text-center link_bright">
+						Do not have an account yet? <a href="#0"><strong>Register
+								now!</strong></a>
+					</p>
+				</div>
+				<!-- /login -->
+			</div>
+		</div>
+	</ui:define>
+
+</ui:composition>
