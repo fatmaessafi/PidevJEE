@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      template="/WEB-INF/template/template.xhtml">
+      
+      <ui:define name="title">
+      
+      <title>Epione</title>
+      
+      </ui:define>
+      
+      <ui:define name="content">
+      
+     <div class="page-wrapper">
+                <div class="content container-fluid">
+					<div class="row">
+						<div class="col-xs-8">
+							<h4 class="page-title">Assets</h4>
+						</div>
+						<div class="row">
+						<div class="col-md-12">
+							<div class="table-responsive">
+								<h:dataTable  value="#{appointmentBean.listM}" var="cp" id="tab"> 
+								<h:column >
+				
+							<h:outputText value="#{cp.visitReason}" />
+							<h:outputText value="#{cp.appDate}" />
+							<h:outputText value="#{cp.appRate}" />
+							<h:outputText value="#{cp.patientId}" />
+								<h:outputText value="#{cp.patientId}" />
+				</h:column>
+				
+								
+								</h:dataTable>
+								</div>
+								</div>
+								</div>
+						
+												</div>
+												</div>
+												</div>
+												
+            
+       
+            
+   </ui:define>
+   </ui:composition>
