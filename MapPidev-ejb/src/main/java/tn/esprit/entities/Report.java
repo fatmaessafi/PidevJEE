@@ -17,13 +17,42 @@ public class Report implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ReportId")
-	private int reportId;
+	private int ReportId;
 
 	@Column(name="ReportDate")
-	private String reportDate;
+	private String ReportDate;
+
+	public int getReportId() {
+		return ReportId;
+	}
+
+
+	public void setReportId(int reportId) {
+		ReportId = reportId;
+	}
+
+
+	public String getReportDate() {
+		return ReportDate;
+	}
+
+
+	public void setReportDate(String reportDate) {
+		ReportDate = reportDate;
+	}
+
+
+	public String getReportDescription() {
+		return ReportDescription;
+	}
+
+
+	public void setReportDescription(String reportDescription) {
+		ReportDescription = reportDescription;
+	}
 
 	@Column(name="ReportDescription")
-	private String reportDescription;
+	private String ReportDescription;
 
 	//bi-directional one-to-one association to Appointment
 	@OneToOne
@@ -33,29 +62,6 @@ public class Report implements Serializable {
 	public Report() {
 	}
 
-	public int getReportId() {
-		return this.reportId;
-	}
-
-	public void setReportId(int reportId) {
-		this.reportId = reportId;
-	}
-
-	public String getReportDate() {
-		return this.reportDate;
-	}
-
-	public void setReportDate(String reportDate) {
-		this.reportDate = reportDate;
-	}
-
-	public String getReportDescription() {
-		return this.reportDescription;
-	}
-
-	public void setReportDescription(String reportDescription) {
-		this.reportDescription = reportDescription;
-	}
 
 	public Appointment getAppointment() {
 		return this.appointment;

@@ -1,5 +1,12 @@
 package tn.esprit.service;
 
-public interface ReportServiceRemote {
+import java.util.List;
 
+import javax.ejb.Remote;
+
+import tn.esprit.entities.Report;
+
+@Remote
+public interface ReportServiceRemote {
+	public List<Report> getAllReports() ;
 }
