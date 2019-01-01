@@ -1,11 +1,13 @@
 package tn.esprit.bean;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
 import tn.esprit.entities.User;
 import tn.esprit.service.ServiceFatmaPatientLocal;
@@ -188,10 +190,14 @@ public class PatientFatmaBean {
 		for( User u :  listPatients)
 		{
 			
-			System.out.println(u.getFirstName());
+			//System.out.println(u.getFirstName());
 		}
 		return listPatients;
 	}
-	
+	public String getTreatment(int idPatient)
+	{ 
+		System.out.println("selected="+idPatient);
+	return "treatmentByPatient?faces-redirect=true&idPatient="+idPatient;
+	}
 }
 	

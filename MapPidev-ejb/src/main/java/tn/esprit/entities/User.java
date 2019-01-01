@@ -34,8 +34,12 @@ public class User implements Serializable {
 
 	@Column(name = "Allergies")
 	private String Allergies;
-
 	
+	@Column(name="BirthDate")
+	private String BirthDate;
+	
+	@Column(name="RegistrationDate")
+	private String RegistrationDate;
 
 	@Column(name = "City")
 	private String City;
@@ -416,6 +420,22 @@ public class User implements Serializable {
 		this.dayOffs = dayOffs;
 	}
 
+	public String getBirthDate() {
+		return BirthDate;
+	}
+
+	public void setBirthDate(String birthDate) {
+		this.BirthDate = birthDate;
+	}
+
+	public String getRegistrationDate() {
+		return RegistrationDate;
+	}
+
+	public void setRegistrationDate(String registrationDate) {
+		this.RegistrationDate = registrationDate;
+	}
+
 	public List<Event> getEvents() {
 		return events;
 	}
@@ -459,18 +479,21 @@ public class User implements Serializable {
 	@Override
 	public String toString() {
 		return "User [Id=" + Id + ", AccessFailedCount=" + AccessFailedCount + ", Allergies=" + Allergies
-				+ ", City=" + City + ", CivilStatus=" + CivilStatus + ", Discriminator="
-				+ Discriminator + ", Email=" + Email + ", EmailConfirmed=" + EmailConfirmed + ", Enabled=" + Enabled
-				+ ", FirstName=" + FirstName + ", Gender=" + Gender + ", HomeAddress=" + HomeAddress + ", LastName="
-				+ LastName + ", Location=" + Location + ", LockoutEnabled=" + LockoutEnabled + ", LockoutEndDateUtc="
-				+ LockoutEndDateUtc + ", Password=" + Password + ", PasswordHash=" + PasswordHash + ", PhoneNumber="
-				+ PhoneNumber + ", PhoneNumberConfirmed=" + PhoneNumberConfirmed + ", Profession=" + Profession
-				+ ", SecurityStamp=" + SecurityStamp + ", Speciality="
-				+ Speciality + ", SpecialReq=" + SpecialReq + ", Surgeon=" + Surgeon + ", TwoFactorEnabled="
-				+ TwoFactorEnabled + ", UserName=" + UserName + ", analytics=" + analytics + ", appointments="
-				+ appointments + ", customUserClaims=" + customUserClaims + ", customUserLogins=" + customUserLogins
-				+ ", customUserRoles=" + customUserRoles + ", dayOffs=" + dayOffs + ", events=" + events + ", messages="
-				+ messages + ", treatments=" + treatments + ", visitReasons=" + visitReasons + "]";
+				+ ", BirthDate=" + BirthDate + ", RegistrationDate=" + RegistrationDate + ", City=" + City
+				+ ", CivilStatus=" + CivilStatus + ", Discriminator=" + Discriminator + ", Email=" + Email
+				+ ", EmailConfirmed=" + EmailConfirmed + ", Enabled=" + Enabled + ", FirstName=" + FirstName
+				+ ", Gender=" + Gender + ", HomeAddress=" + HomeAddress + ", LastName=" + LastName + ", Location="
+				+ Location + ", LockoutEnabled=" + LockoutEnabled + ", LockoutEndDateUtc=" + LockoutEndDateUtc
+				+ ", Password=" + Password + ", PasswordHash=" + PasswordHash + ", PhoneNumber=" + PhoneNumber
+				+ ", PhoneNumberConfirmed=" + PhoneNumberConfirmed + ", Profession=" + Profession + ", SecurityStamp="
+				+ SecurityStamp + ", Speciality=" + Speciality + ", SpecialReq=" + SpecialReq + ", Surgeon=" + Surgeon
+				+ ", TwoFactorEnabled=" + TwoFactorEnabled + ", UserName=" + UserName + ", analytics=" + analytics
+				+ ", appointments=" + appointments + ", customUserClaims=" + customUserClaims + ", customUserLogins="
+				+ customUserLogins + ", customUserRoles=" + customUserRoles + ", dayOffs=" + dayOffs + ", events="
+				+ events + ", messages=" + messages + ", treatments=" + treatments + ", visitReasons=" + visitReasons
+				+ "]";
 	}
+
+	
 
 }

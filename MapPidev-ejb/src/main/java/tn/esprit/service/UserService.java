@@ -47,12 +47,15 @@ public class UserService implements UserServiceRemote, UserServiceLocal {
 		Gson j=new Gson();		
 		ObjectMapper mapper = new ObjectMapper();
 		Response response=target.request().post(Entity.json(u));
-		System.out.println("LoginVM="+u.toString());
+		//System.out.println("LoginVM="+u.toString());
 		String result=response.readEntity(String.class);
 		System.out.println("result="+result);
 		User us = j.fromJson(result, new TypeToken<User>(){}.getType());
 		CurrentUser=us;
-		System.out.println(us.getEmail());
+		if(CurrentUser.getAllergies()!=null)
+			CurrentUser.setDiscriminator("Patient");
+		else CurrentUser.setDiscriminator("Doctor");
+		System.out.println(CurrentUser.toString());
 		response.close();
 		return us;
 	}
@@ -77,4 +80,17 @@ public class UserService implements UserServiceRemote, UserServiceLocal {
 		CurrentUser=null;
 	}
 	
+	public User GetUserById(int id)
+	{
+		
+		Client client=ClientBuilder.newClient();
+		WebTarget target=client.target("http://localhost:21514/api/WSIdentity/GetUserById/"+id);
+		Gson j=new Gson();		
+		ObjectMapper mapper = new ObjectMapper();
+		Response response=target.request().get();
+		String result=response.readEntity(String.class);
+		User us = j.fromJson(result, new TypeToken<User>(){}.getType());
+		
+		return us;
+	}
 }
