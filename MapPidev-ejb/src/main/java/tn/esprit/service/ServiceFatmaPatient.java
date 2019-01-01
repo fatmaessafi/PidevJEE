@@ -44,7 +44,7 @@ public class ServiceFatmaPatient implements ServiceFatmaPatientRemote, ServiceFa
 		String result = reponse.readEntity(String.class);
 		Gson j = new Gson();
 		List<User>  patients=j.fromJson(result, new TypeToken<List<User>>(){}.getType());
-		System.out.println("result="+result);
+		//System.out.println("result="+result);
 		 reponse.close();      
        return patients;
     }
