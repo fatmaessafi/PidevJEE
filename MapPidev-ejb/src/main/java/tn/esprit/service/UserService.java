@@ -80,4 +80,17 @@ public class UserService implements UserServiceRemote, UserServiceLocal {
 		CurrentUser=null;
 	}
 	
+	public User GetUserById(int id)
+	{
+		
+		Client client=ClientBuilder.newClient();
+		WebTarget target=client.target("http://localhost:21514/api/WSIdentity/GetUserById/"+id);
+		Gson j=new Gson();		
+		ObjectMapper mapper = new ObjectMapper();
+		Response response=target.request().get();
+		String result=response.readEntity(String.class);
+		User us = j.fromJson(result, new TypeToken<User>(){}.getType());
+		
+		return us;
+	}
 }

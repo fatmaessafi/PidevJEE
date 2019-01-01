@@ -15,8 +15,7 @@
 			<div class="container">
 				<ul>
 					<li><a href="#">Home</a></li>
-					<li><a href="#">Category</a></li>
-					<li>Page active</li>
+					<li><a href="#">Treatments</a></li>
 				</ul>
 			</div>
 		</div>
@@ -30,20 +29,20 @@
 						alt="" class="img-fluid" /> </figure>
 					<small>Patient</small>
 
-					<h1>Fatma Essafi</h1>
+					<h1><h:outputLabel value="#{userBean.GetUserById(param['idPatient']).firstName} #{userBean.GetUserById(param['idPatient']).lastName}"/></h1>
 
 					<ul class="statistic">
 
-						<li>2 Treatments</li>
+						<li><h:outputLabel value="#{treatmentBean.nbTreatments(param['idPatient'])}" /> Treatments</li>
 					</ul>
 					<ul class="contacts">
-						<li><h6>Profession</h6>Student</li>
-						<li><h6>Civil Status</h6>Single</li>
-						<li><h6>City</h6>Ariana</li>
-						<li><h6>Address</h6>Menzah 8</li>
-						<li><h6>Phone</h6>+216 55271016</li>
-						<li><h6>Allergies</h6>None</li>
-						<li><h6>Special Requirements</h6>Opk</li>
+						<li><h6>Profession</h6><h:outputLabel value="#{userBean.GetUserById(param['idPatient']).profession}"/> </li>
+						<li><h6>Civil Status</h6><h:outputLabel value="#{userBean.GetUserById(param['idPatient']).civilStatus}"/> </li>
+						<li><h6>City</h6><h:outputLabel value="#{userBean.GetUserById(param['idPatient']).city}"/> </li>
+						<li><h6>Address</h6><h:outputLabel value="#{userBean.GetUserById(param['idPatient']).homeAddress}"/> </li>
+						<li><h6>Phone</h6><h:outputLabel value="#{userBean.GetUserById(param['idPatient']).phoneNumber}"/> </li>
+						<li><h6>Allergies</h6><h:outputLabel value="#{userBean.GetUserById(param['idPatient']).allergies}"/> </li>
+						<li><h6>Special Requirements</h6><h:outputLabel value="#{userBean.GetUserById(param['idPatient']).specialReq}"/> </li>
 
 					</ul>
 
@@ -58,7 +57,7 @@
 							<li class="nav-item"><a class="nav-link active" href="">Treatments</a>
 							</li>
 							<li class="nav-item"><a class="nav-link" href=""><i
-									class="pe-7s-plus"></i> New treatment</a></li>
+									class="pe-7s-plus"></i>New treatment</a></li>
 
 						</ul>
 						<!--/nav-tabs -->
@@ -89,7 +88,7 @@
 												<f:facet name="header" class="warning">
 													<h:outputLabel value="Doctor" />
 												</f:facet>
-												<h:outputText value="#{cp.doctorId}" />
+												<h:outputText value="#{cp.doctor}" />
 											</h:column>
 											<h:column>
 												<f:facet name="header" class="warning">
