@@ -12,6 +12,6 @@ public interface AppointmetServiceRemote {
 	
 	public List<Appointment> getAllAppointments() ;
 	
-	
+	public String getApp();
 
 }

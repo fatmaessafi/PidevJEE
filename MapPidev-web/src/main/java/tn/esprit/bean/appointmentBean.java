@@ -7,6 +7,9 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import tn.esprit.entities.Appointment;
 
 import tn.esprit.service.AppointmentServiceLocal;
@@ -73,13 +76,6 @@ public class appointmentBean {
 	}
 
 
-	
-	
-	
-	
-	
-	
-	
 	public List<Appointment> getListapp() {
 		return listapp;
 	}
@@ -90,15 +86,14 @@ public class appointmentBean {
 
 	
 	
-	public List<Appointment>  GetAllappointments() throws ParseException
+	public List<Appointment>  GetAllappointments() 
 	{
-		listapp = appointmentServiceLocal.getAllAppointments() ;
-		for( Appointment u :  listapp)
-		{
-			
-			System.out.println(u.getAppRate());
-		}
-		return listapp;
+		//listapp = appointmentServiceLocal.getAllAppointments() ;
+		String result = appointmentServiceLocal.getApp();
+		Gson j = new Gson();
+		List<Appointment>  patients=j.fromJson(result, new TypeToken<List<Appointment>>(){}.getType());
+		System.out.println(patients.toString());
+		return patients;
 	}
 	
 }

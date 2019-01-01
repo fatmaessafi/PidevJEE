@@ -45,7 +45,7 @@ public class Step implements Serializable {
 	private boolean validation;
 
 	//bi-directional many-to-one association to Appointment
-	@OneToMany(mappedBy="step")
+	@OneToMany(mappedBy="Step")
 	private List<Appointment> appointments;
 
 	//bi-directional many-to-one association to Appointment

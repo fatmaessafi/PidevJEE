@@ -1,45 +1,68 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      template="/WEB-INF/template/template.xhtml">
-      
-      <ui:define name="title">
-      
-      <title>Dashboard - Levio</title>
-      
-      </ui:define>
-      
-      <ui:define name="content">
-      
-     <div class="page-wrapper">
-                <div class="content container-fluid">
-					<div class="row">
-						<div class="col-xs-8">
-							<h4 class="page-title">Assets</h4>
-						</div>
-						<div class="row">
-						<div class="col-md-12">
-							<div class="table-responsive">
-								<h:dataTable class="table table-striped custom-table m-b-0 datatable" value="#{appointmentBean.GetAllappointments()}" var="cp" id="tab"> 
-								<h:column >
-				<h:outputText value="Cost" />
-				<h:outputText value="#{cp.appRate}" />
-				</h:column>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="title">
+		<title>All appointments</title>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<div class="tabs_styled_2">
+			<div class="tab-content">
+
+				<div class="tab-pane fade show active" id="book" role="tabpanel"
+					aria-labelledby="book-tab">
+					<p class="lead add_bottom_30">All the Appointments.</p>
+
+					<div class="main_title_3">
+						<h3>Appointments</h3>
+					</div>
+					<div class="form-group add_bottom_45">
+						<h:dataTable class="table"
+							value="#{appointmentBean.GetAllappointments()}" var="cp" id="tab">
+							<tbody>
+							
+								<h:column>
+									<f:facet name="header" class="warning">
+										<h:outputLabel value="Appointmentdate" />
+									</f:facet>
+									<h:outputText value="#{cp.appDate}" />
+								</h:column>
 								
-								</h:dataTable>
-								</div>
-								</div>
-								</div>
-						
-												</div>
-												</div>
-												</div>
-												
-            
-       
-            
-   </ui:define>
-   </ui:composition>
+								<h:column>
+									<f:facet name="header" class="warning">
+										<h:outputLabel value="Visit reason " />
+									</f:facet>
+									<h:outputText value="#{cp.visitReason}" />
+								</h:column>
+								
+								
+								
+								
+								
+							
+								<h:column>
+									<f:facet name="header" class="warning">
+										<h:outputLabel value="Select" />
+									</f:facet>
+									<h1>
+										<a href=""><i
+											class="pe-7s-angle-right-circle"></i></a>
+									</h1>
+
+								</h:column>
+							</tbody>
+						</h:dataTable>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+
+
