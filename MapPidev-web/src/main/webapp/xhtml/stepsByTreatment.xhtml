@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="title">
+		<title>Patients</title>
+	</ui:define>
+
+	<ui:define name="content">
+		<div id="breadcrumb">
+			<div class="container">
+				<ul>
+					<li>Home</li>
+					<li>Treatments</li>
+					<li>Steps</li>
+				</ul>
+			</div>
+		</div>
+		<!-- /breadcrumb -->
+
+		<div class="container margin_60">
+			<div class="row">
+				<aside class="col-xl-3 col-lg-4" id="sidebar">
+				<div class="box_profile">
+					<figure> <img src="../assets/img/avatarblueprofile.png"
+						alt="" class="img-fluid" /> </figure>
+					<small>Patient</small>
+
+					<h1>
+						<h:outputLabel
+							value="#{userBean.GetUserById(param['idPatient']).firstName} #{userBean.GetUserById(param['idPatient']).lastName}" />
+					</h1>
+
+					<ul class="statistic">
+
+						<li><h:outputLabel
+								value="#{treatmentBean.nbTreatments(param['idPatient'])}" />
+							Treatments</li>
+					</ul>
+					<ul class="contacts">
+						<li><h6>Profession</h6> <h:outputLabel
+								value="#{userBean.GetUserById(param['idPatient']).profession}" />
+						</li>
+						<li><h6>Civil Status</h6> <h:outputLabel
+								value="#{userBean.GetUserById(param['idPatient']).civilStatus}" />
+						</li>
+						<li><h6>City</h6> <h:outputLabel
+								value="#{userBean.GetUserById(param['idPatient']).city}" /></li>
+						<li><h6>Address</h6> <h:outputLabel
+								value="#{userBean.GetUserById(param['idPatient']).homeAddress}" />
+						</li>
+						<li><h6>Phone</h6> <h:outputLabel
+								value="#{userBean.GetUserById(param['idPatient']).phoneNumber}" />
+						</li>
+						<li><h6>Allergies</h6> <h:outputLabel
+								value="#{userBean.GetUserById(param['idPatient']).allergies}" />
+						</li>
+						<li><h6>Special Requirements</h6> <h:outputLabel
+								value="#{userBean.GetUserById(param['idPatient']).specialReq}" />
+						</li>
+
+					</ul>
+
+				</div>
+				</aside>
+				<!-- /aside -->
+				<div class="col-xl-9 col-lg-8">
+
+					<div class="tabs_styled_2">
+						<ul class="nav nav-tabs" role="tablist">
+							<li class="nav-item"><a class="nav-link active" href="">Steps</a>
+							</li>
+							<li class="nav-item"><a class="nav-link" href=""><i
+									class="pe-7s-plus"></i>New step</a></li>
+
+						</ul>
+						<!--/nav-tabs -->
+
+						<div class="tab-content">
+							<div class="tab-pane fade show active" id="book" role="tabpanel"
+								aria-labelledby="book-tab">
+								<p class="lead add_bottom_30">This is all the steps of the
+									treatment.</p>
+
+								<div class="main_title_3">
+									<h3>Steps of treatment</h3>
+								</div>
+								<div class="form-group add_bottom_45">
+
+									<div class="margin_60_35">
+
+										<div class="pricing-container cd-has-margins">
+											<ul class="pricing-list">
+												<c:forEach var="cp"
+													items="#{stepBean.GetStepsByTreatment(param['idTreatment'])}">
+
+
+													<li>
+
+
+														<ul class="pricing-wrapper">
+															<li class="is-visible"><header
+																	class="pricing-header">
+																<h2>
+																	<h:outputLabel value="#{cp.validation}" />
+																</h2>
+
+																<div class="price">
+																	<span class="currency"><h:outputLabel
+																			value="#{cp.stepDate}" /></span> <span class="price"><h:outputLabel
+																			value="#{cp.stepSpeciality}" /></span> <span
+																		class="price-duration"><h:outputLabel
+																			value="#{cp.stepDescription}" /></span>
+																</div>
+																</header> <!-- /pricing-header -->
+																<div class="pricing-body">
+																	<ul class="pricing-features">
+																		<li>Appointment <em> <h:outputLabel
+																					value="#{cp.appointment}" /></em></li>
+																		<li>Modified <em><h:outputLabel
+																					value="#{cp.nbModifications}" /></em> times
+																		</li>
+																		<li><em>Last modification by </em> <h:outputLabel
+																				value="#{cp.lastModificationBy}" /></li>
+																		<li><em>Modification reason </em> <h:outputLabel
+																				value="#{cp.modificationReason}" /></li>
+																		<li>Modification date <em> <h:outputLabel
+																					value="#{cp.lastModificationDate}" /></em></li>
+
+																	</ul>
+																</div> <!-- /pricing-body --> <footer class="pricing-footer">
+																<a class="select-plan" href="">Select</a>
+																<h3 align="right">
+																	<a href=""><i class="pe-7s-trash"></i></a>
+																</h3>
+																</footer></li>
+														</ul>
+													</li>
+													<!-- /pricing-wrapper -->
+												</c:forEach>
+
+											</ul>
+											<!-- /pricing-list -->
+										</div>
+										<!-- /pricing-container -->
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

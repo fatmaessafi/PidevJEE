@@ -29,45 +29,20 @@
 						alt="" class="img-fluid" /> </figure>
 					<small>Patient</small>
 
-					<h1>
-						<h:outputLabel
-							value="#{userBean.GetUserById(param['idPatient']).firstName} #{userBean.GetUserById(param['idPatient']).lastName}" />
-					</h1>
+					<h1><h:outputLabel value="#{userBean.GetCurrentUser().firstName} #{userBean.GetCurrentUser().lastName}"/></h1>
 
 					<ul class="statistic">
 
-						<li><h:outputLabel
-								value="#{treatmentBean.nbTreatments(param['idPatient'])}" />
-							Treatments</li>
+						<li><h:outputLabel value="#{treatmentBean.nbTreatments(userBean.GetCurrentUser().id)}" /> Treatments </li>
 					</ul>
 					<ul class="contacts">
-						<li><h6>Profession</h6>
-							<h:outputLabel
-								value="#{userBean.GetUserById(param['idPatient']).profession}" />
-						</li>
-						<li><h6>Civil Status</h6>
-							<h:outputLabel
-								value="#{userBean.GetUserById(param['idPatient']).civilStatus}" />
-						</li>
-						<li><h6>City</h6>
-							<h:outputLabel
-								value="#{userBean.GetUserById(param['idPatient']).city}" /></li>
-						<li><h6>Address</h6>
-							<h:outputLabel
-								value="#{userBean.GetUserById(param['idPatient']).homeAddress}" />
-						</li>
-						<li><h6>Phone</h6>
-							<h:outputLabel
-								value="#{userBean.GetUserById(param['idPatient']).phoneNumber}" />
-						</li>
-						<li><h6>Allergies</h6>
-							<h:outputLabel
-								value="#{userBean.GetUserById(param['idPatient']).allergies}" />
-						</li>
-						<li><h6>Special Requirements</h6>
-							<h:outputLabel
-								value="#{userBean.GetUserById(param['idPatient']).specialReq}" />
-						</li>
+						<li><h6>Profession</h6><h:outputLabel value="#{userBean.GetCurrentUser().profession}"/> </li>
+						<li><h6>Civil Status</h6><h:outputLabel value="#{userBean.GetCurrentUser().civilStatus}"/> </li>
+						<li><h6>City</h6><h:outputLabel value="#{userBean.GetCurrentUser().city}"/> </li>
+						<li><h6>Address</h6><h:outputLabel value="#{userBean.GetCurrentUser().homeAddress}"/> </li>
+						<li><h6>Phone</h6><h:outputLabel value="#{userBean.GetCurrentUser().phoneNumber}"/> </li>
+						<li><h6>Allergies</h6><h:outputLabel value="#{userBean.GetCurrentUser().allergies}"/> </li>
+						<li><h6>Special Requirements</h6><h:outputLabel value="#{userBean.GetCurrentUser().specialReq}"/> </li>
 
 					</ul>
 
@@ -81,8 +56,7 @@
 						<ul class="nav nav-tabs" role="tablist">
 							<li class="nav-item"><a class="nav-link active" href="">Treatments</a>
 							</li>
-							<li class="nav-item"><a class="nav-link" href=""><i
-									class="pe-7s-plus"></i>New treatment</a></li>
+							
 
 						</ul>
 						<!--/nav-tabs -->
@@ -100,7 +74,7 @@
 								</div>
 								<div class="form-group add_bottom_45">
 									<h:dataTable class="table"
-										value="#{treatmentBean.GetTreatmentsByPatient(param['idPatient'])}"
+										value="#{treatmentBean.GetTreatmentsByPatient(userBean.GetCurrentUser().id)}"
 										var="cp" id="tab">
 										<tbody>
 											<h:column>
@@ -130,24 +104,7 @@
 												</h1>
 											</h:column>
 
-											<h:column>
-												<f:facet name="header" class="warning">
-													<h:outputLabel value="Edit" />
-												</f:facet>
-												<h1>
-													<a href=""><i class="pe-7s-note"></i></a>
-												</h1>
-
-											</h:column>
-											<h:column>
-												<f:facet name="header" class="warning">
-													<h:outputLabel value="Delete" />
-												</f:facet>
-												<h1>
-													<a href=""><i class="pe-7s-trash"></i></a>
-												</h1>
-
-											</h:column>
+									
 
 										</tbody>
 									</h:dataTable>

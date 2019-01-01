@@ -75,7 +75,8 @@ public class TreatmentBean {
 		List<TreatmentBean> listTreatmentBean= new ArrayList<>();
 		for( Treatment t :  listTreatments)
 		{		TreatmentBean tb= new TreatmentBean();
-			tb.doctor=serviceUserLocal.GetUserById(t.getDoctorId()).getFirstName()+" "+serviceUserLocal.GetUserById(t.getDoctorId()).getLastName();
+			
+		tb.doctor=serviceUserLocal.GetUserById(t.getDoctorId()).getFirstName()+" "+serviceUserLocal.GetUserById(t.getDoctorId()).getLastName();
 			tb.illness=t.getIllness();
 			tb.patientId=t.getPatientId();
 			tb.treatmentId=t.getTreatmentId();
