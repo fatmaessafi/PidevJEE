@@ -1,5 +1,7 @@
 package tn.esprit.service;
 
+import java.text.SimpleDateFormat;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.ws.rs.client.Client;
@@ -14,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import tn.esprit.entities.User;
+import tn.esprit.vm.LoginVM;
 import tn.esprit.vm.RegisterVM;
 
 
@@ -24,6 +27,7 @@ import tn.esprit.vm.RegisterVM;
 @LocalBean
 public class UserService implements UserServiceRemote, UserServiceLocal {
 
+	public static User CurrentUser= new User();
     /**
      * Default constructor. 
      */
@@ -34,19 +38,26 @@ public class UserService implements UserServiceRemote, UserServiceLocal {
 	@Override
 	public User Login(String email, String mdp, Boolean RememberMe) {
 		// TODO Auto-generated method stub
-		User u=new User();
-		  u.setEmail(email);
-		  u.setPassword(mdp);
+		LoginVM u=new LoginVM();
+		 u.setEmail(email);
+		 u.setPassword(mdp);
+		 u.setRememberMe(true);
 		Client client=ClientBuilder.newClient();
 		WebTarget target=client.target("http://localhost:21514/api/Login");
-		Gson j=new Gson();
+		Gson j=new Gson();		
 		ObjectMapper mapper = new ObjectMapper();
 		Response response=target.request().post(Entity.json(u));
+		//System.out.println("LoginVM="+u.toString());
 		String result=response.readEntity(String.class);
-		u = j.fromJson(result, new TypeToken<User>(){}.getType());
-		System.out.println(u.getEmail());
+		System.out.println("result="+result);
+		User us = j.fromJson(result, new TypeToken<User>(){}.getType());
+		CurrentUser=us;
+		if(CurrentUser.getAllergies()!=null)
+			CurrentUser.setDiscriminator("Patient");
+		else CurrentUser.setDiscriminator("Doctor");
+		System.out.println(CurrentUser.toString());
 		response.close();
-		return u;
+		return us;
 	}
 
 	@Override
@@ -57,10 +68,29 @@ public class UserService implements UserServiceRemote, UserServiceLocal {
 		ObjectMapper mapper = new ObjectMapper();
 		Response response=target.request().post(Entity.json(u));
 		String result=response.readEntity(String.class);
-		u = j.fromJson(result, new TypeToken<RegisterVM>(){}.getType());
-		System.out.println("result="+result);
+		//u = j.fromJson(result, new TypeToken<RegisterVM>(){}.getType());
+		//System.out.println("result="+result);
 		response.close();
 		
+		System.out.println("REGISTER");
 	}
 
+	public void Logout ()
+	{
+		CurrentUser=null;
+	}
+	
+	public User GetUserById(int id)
+	{
+		
+		Client client=ClientBuilder.newClient();
+		WebTarget target=client.target("http://localhost:21514/api/WSIdentity/GetUserById/"+id);
+		Gson j=new Gson();		
+		ObjectMapper mapper = new ObjectMapper();
+		Response response=target.request().get();
+		String result=response.readEntity(String.class);
+		User us = j.fromJson(result, new TypeToken<User>(){}.getType());
+		
+		return us;
+	}
 }

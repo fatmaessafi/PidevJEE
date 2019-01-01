@@ -2,6 +2,9 @@ package tn.esprit.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.List;
 
 
@@ -18,21 +21,23 @@ public class Treatment implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="TreatmentId")
-	private int treatmentId;
+	private int TreatmentId;
 
 	@Column(name="Illness")
-	private String illness;
+	private String Illness;
 
 	@Column(name="PatientId")
-	private int patientId;
+	private int PatientId;
 
 	@Column(name="Validation")
-	private boolean validation;
+	private boolean Validation;
 
 	//bi-directional many-to-one association to Step
 	@OneToMany(mappedBy="treatment")
 	private List<Step> steps;
-
+	@Transient
+	@JsonInclude
+	private int DoctorId;
 	//bi-directional many-to-one association to User
 	@ManyToOne
 	@JoinColumn(name="DoctorId")
@@ -42,65 +47,70 @@ public class Treatment implements Serializable {
 	}
 
 	public int getTreatmentId() {
-		return this.treatmentId;
+		return TreatmentId;
 	}
 
 	public void setTreatmentId(int treatmentId) {
-		this.treatmentId = treatmentId;
+		TreatmentId = treatmentId;
 	}
 
 	public String getIllness() {
-		return this.illness;
+		return Illness;
 	}
 
 	public void setIllness(String illness) {
-		this.illness = illness;
+		Illness = illness;
 	}
 
 	public int getPatientId() {
-		return this.patientId;
+		return PatientId;
 	}
 
 	public void setPatientId(int patientId) {
-		this.patientId = patientId;
+		PatientId = patientId;
 	}
 
-	public boolean getValidation() {
-		return this.validation;
+	public boolean isValidation() {
+		return Validation;
 	}
 
 	public void setValidation(boolean validation) {
-		this.validation = validation;
+		Validation = validation;
 	}
 
 	public List<Step> getSteps() {
-		return this.steps;
+		return steps;
 	}
 
 	public void setSteps(List<Step> steps) {
 		this.steps = steps;
 	}
 
-	public Step addStep(Step step) {
-		getSteps().add(step);
-		step.setTreatment(this);
-
-		return step;
+	public int getDoctorId() {
+		return DoctorId;
 	}
 
-	public Step removeStep(Step step) {
-		getSteps().remove(step);
-		step.setTreatment(null);
-
-		return step;
+	public void setDoctorId(int doctorId) {
+		DoctorId = doctorId;
 	}
 
 	public User getUser() {
-		return this.user;
+		return user;
 	}
 
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
+	public String toString() {
+		return "Treatment [TreatmentId=" + TreatmentId + ", Illness=" + Illness + ", PatientId=" + PatientId
+				+ ", Validation=" + Validation + ", steps=" + steps + ", DoctorId=" + DoctorId + ", user=" + user + "]";
+	}
+
 
 }

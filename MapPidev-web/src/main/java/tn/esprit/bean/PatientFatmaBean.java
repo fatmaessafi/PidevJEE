@@ -1,26 +1,26 @@
 package tn.esprit.bean;
 
+import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.EJB;
-
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-
 import javax.faces.context.FacesContext;
 
 import tn.esprit.entities.User;
-import tn.esprit.service.UserServiceLocal;
-import tn.esprit.vm.RegisterVM;
+import tn.esprit.service.ServiceFatmaPatientLocal;
 
 @ManagedBean
 @javax.faces.bean.SessionScoped
-public class testBean {
+public class PatientFatmaBean {
+	
 	@EJB
-	UserServiceLocal userServiceLocal;
+	ServiceFatmaPatientLocal serviceFatmaPatientLocal ;
+
+	List<User> listPatients = new ArrayList<>();
+
 	private String firstName;
 
 	private String lastName;
@@ -35,7 +35,6 @@ public class testBean {
 
 	private String gender;
 
-	private String birthDate;
 
 	private String city;
 
@@ -52,13 +51,6 @@ public class testBean {
 	private String profession;
 
 	private String specialReq;
-	// Doctor attributes
-
-	private String speciality;
-
-	private String location;
-
-	private String surgeon;
 
 	public String getFirstName() {
 		return firstName;
@@ -116,14 +108,7 @@ public class testBean {
 		this.gender = gender;
 	}
 
-	public String getBirthDate() {
-		return birthDate;
-	}
-
-	public void setBirthDate(String birthDate) {
-		this.birthDate = birthDate;
-	}
-
+	
 	public String getCity() {
 		return city;
 	}
@@ -146,6 +131,14 @@ public class testBean {
 
 	public void setCivilStatus(String civilStatus) {
 		this.civilStatus = civilStatus;
+	}
+
+	public Boolean getTermsAndConditions() {
+		return termsAndConditions;
+	}
+
+	public void setTermsAndConditions(Boolean termsAndConditions) {
+		this.termsAndConditions = termsAndConditions;
 	}
 
 	public String getRole() {
@@ -179,69 +172,30 @@ public class testBean {
 	public void setSpecialReq(String specialReq) {
 		this.specialReq = specialReq;
 	}
-
-	public String getSpeciality() {
-		return speciality;
+	
+	
+	public List<User> getListPatients() {
+		return listPatients;
 	}
 
-	public void setSpeciality(String speciality) {
-		this.speciality = speciality;
+	public void setListPatients(List<User> listPatients) {
+		this.listPatients = listPatients;
 	}
 
-	public String getLocation() {
-		return location;
+	public List<User>  GetAllPatients() throws ParseException
+	{
+		listPatients = serviceFatmaPatientLocal.getAllPatients() ;
+		for( User u :  listPatients)
+		{
+			
+			//System.out.println(u.getFirstName());
+		}
+		return listPatients;
 	}
-
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
-	public String getSurgeon() {
-		return surgeon;
-	}
-
-	public void setSurgeon(String surgeon) {
-		this.surgeon = surgeon;
-	}
-
-	public Boolean getTermsAndConditions() {
-		return termsAndConditions;
-	}
-
-	public void setTermsAndConditions(Boolean termsAndConditions) {
-		this.termsAndConditions = termsAndConditions;
-	}
-
-	public String doRegister() throws ParseException {
-		String navigateTo = "";
-		RegisterVM user = new RegisterVM();
-		user.setFirstName(firstName);
-		user.setLastName(lastName);
-		user.setEmail(email);
-		user.setPassword(password);
-		user.setConfirmPassword(confirmPassword);
-		user.setPhoneNumber(phoneNumber);
-		user.setGender(gender);
-		System.out.print("birthdate="+birthDate);
-		SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd");
-		simpleFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-		user.setBirthDate(simpleFormat.parse(birthDate));
-		user.setCity(city);
-		user.setHomeAddress(homeAddress);
-		user.setCivilStatus(civilStatus);
-		user.setTermsAndConditions(termsAndConditions);
-		user.setRole(role);
-		user.setProfession(profession);
-		user.setAllergies(allergies);
-		user.setSpecialReq(specialReq);
-		user.setSpeciality(speciality);
-		user.setLocation(location);
-		user.setSurgeon(surgeon);
-		System.out.println(user);
-		userServiceLocal.Register(user);
-		System.out.println("ok register");
-		navigateTo = "/xhtml/login?faces-redirect=true";
-
-		return navigateTo;
+	public String getTreatment(int idPatient)
+	{ 
+		System.out.println("selected="+idPatient);
+	return "treatmentByPatient?faces-redirect=true&idPatient="+idPatient;
 	}
 }
+	
