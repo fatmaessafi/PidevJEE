@@ -23,7 +23,6 @@
 					</div>
 					<div class="form-group add_bottom_45">
 						<h:dataTable class="table"
-						
 							value="#{patientFatmaBean.GetAllPatients()}" var="cp" id="tab">
 							<tbody>
 								<h:column>
@@ -88,10 +87,11 @@
 									<h:outputText value="#{cp.specialReq}" />
 								</h:column>
 								<h:column>
-								<h:form>
-									<h:commandButton
-										action="#{patientFatmaBean.getTreatment(cp.id)}" value="See treatment" class="btn_1" />
-										</h:form>
+									<h:form>
+										<h:commandButton
+											action="#{patientFatmaBean.getTreatment(cp.id)}"
+											value="See treatment" class="btn_1" />
+									</h:form>
 								</h:column>
 							</tbody>
 						</h:dataTable>
