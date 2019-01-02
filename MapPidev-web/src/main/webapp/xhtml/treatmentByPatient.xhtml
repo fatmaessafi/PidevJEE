@@ -10,7 +10,6 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<main>
 		<div id="breadcrumb">
 			<div class="container">
 				<ul>
@@ -41,31 +40,24 @@
 							Treatments</li>
 					</ul>
 					<ul class="contacts">
-						<li><h6>Profession</h6>
-							<h:outputLabel
+						<li><h6>Profession</h6> <h:outputLabel
 								value="#{userBean.GetUserById(param['idPatient']).profession}" />
 						</li>
-						<li><h6>Civil Status</h6>
-							<h:outputLabel
+						<li><h6>Civil Status</h6> <h:outputLabel
 								value="#{userBean.GetUserById(param['idPatient']).civilStatus}" />
 						</li>
-						<li><h6>City</h6>
-							<h:outputLabel
+						<li><h6>City</h6> <h:outputLabel
 								value="#{userBean.GetUserById(param['idPatient']).city}" /></li>
-						<li><h6>Address</h6>
-							<h:outputLabel
+						<li><h6>Address</h6> <h:outputLabel
 								value="#{userBean.GetUserById(param['idPatient']).homeAddress}" />
 						</li>
-						<li><h6>Phone</h6>
-							<h:outputLabel
+						<li><h6>Phone</h6> <h:outputLabel
 								value="#{userBean.GetUserById(param['idPatient']).phoneNumber}" />
 						</li>
-						<li><h6>Allergies</h6>
-							<h:outputLabel
+						<li><h6>Allergies</h6> <h:outputLabel
 								value="#{userBean.GetUserById(param['idPatient']).allergies}" />
 						</li>
-						<li><h6>Special Requirements</h6>
-							<h:outputLabel
+						<li><h6>Special Requirements</h6> <h:outputLabel
 								value="#{userBean.GetUserById(param['idPatient']).specialReq}" />
 						</li>
 
@@ -90,67 +82,104 @@
 						<div class="tab-content">
 							<div class="tab-pane fade show active" id="general"
 								role="tabpanel" aria-labelledby="general-tab">
+								<div class="tab-pane fade show active" id="book" role="tabpanel"
+									aria-labelledby="book-tab">
+
+									<p class="lead add_bottom_30">This is all the treatments
+										that this patient is following.</p>
+
+									<div class="main_title_3">
+										<h3>Treatments</h3>
+									</div>
+									<div>
+										<input type="hidden"
+											value="#{chartJsView.getPourcentageValid(param['idPatient'])}"
+											id="pvalid" /> <input type="hidden"
+											value="#{chartJsView.getPourcentageNotValid(param['idPatient'])}"
+											id="pnotvalid" />
+										<script type="text/javascript"
+											src="https://www.gstatic.com/charts/loader.js"></script>
+										<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
 
 
-								<p class="lead add_bottom_30">This is all the treatments
-									that this patient is following.</p>
+        var data = google.visualization.arrayToDataTable([
+          ['Validation', 'Pourcentage'],
+          ['Valid', +document.getElementById('pvalid').value],
+          ['Not Valid',   +document.getElementById('pnotvalid').value]
+        ]);
 
-								<div class="main_title_3">
-									<h3>Treatments</h3>
-								</div>
-								<div class="form-group add_bottom_45">
-									<h:dataTable class="table"
-										value="#{treatmentBean.GetTreatmentsByPatient(param['idPatient'])}"
-										var="cp" id="tab">
-										<tbody>
-											<h:column>
-												<f:facet name="header" class="warning">
-													<h:outputLabel value="Illness" />
-												</f:facet>
-												<h:outputText value="#{cp.illness}" />
-											</h:column>
-											<h:column>
-												<f:facet name="header" class="warning">
-													<h:outputLabel value="Doctor" />
-												</f:facet>
-												<h:outputText value="#{cp.doctor}" />
-											</h:column>
-											<h:column>
-												<f:facet name="header" class="warning">
-													<h:outputLabel value="Validation" />
-												</f:facet>
-												<h:outputText value="#{cp.validation}" />
-											</h:column>
-											<h:column>
-												<f:facet name="header" class="warning">
-													<h:outputLabel value="View" />
-												</f:facet>
-												<h1>
-													<a href=""><i class="pe-7s-note2"></i></a>
-												</h1>
-											</h:column>
+        var options = {
+          title: 'My treatments validation'
+        };
 
-											<h:column>
-												<f:facet name="header" class="warning">
-													<h:outputLabel value="Edit" />
-												</f:facet>
-												<h1>
-													<a href=""><i class="pe-7s-note"></i></a>
-												</h1>
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
-											</h:column>
-											<h:column>
-												<f:facet name="header" class="warning">
-													<h:outputLabel value="Delete" />
-												</f:facet>
-												<h1>
-													<a href=""><i class="pe-7s-trash"></i></a>
-												</h1>
+        chart.draw(data, options);
+      }
+    </script>
 
-											</h:column>
+										<div id="piechart" style="width: 900px; height: 500px;"></div>
+									</div>
 
-										</tbody>
-									</h:dataTable>
+									<div class="form-group add_bottom_45">
+										<h:dataTable class="table"
+											value="#{treatmentBean.GetTreatmentsByPatient(param['idPatient'])}"
+											var="cp1" id="tab1">
+											<tbody>
+												<h:column>
+													<f:facet name="header" class="warning">
+														<h:outputLabel value="Illness" />
+													</f:facet>
+													<h:outputText value="#{cp1.illness}" />
+												</h:column>
+												<h:column>
+													<f:facet name="header" class="warning">
+														<h:outputLabel value="Doctor" />
+													</f:facet>
+													<h:outputText value="#{cp1.doctor}" />
+												</h:column>
+												<h:column>
+													<f:facet name="header" class="warning">
+														<h:outputLabel value="Validation" />
+													</f:facet>
+													<h:outputText value="#{cp1.validation}" />
+												</h:column>
+
+												<h:column>
+													<f:facet name="header" class="warning">
+														<h:outputLabel value="Edit" />
+													</f:facet>
+													<h1>
+														<a href=""><i class="pe-7s-note"></i></a>
+													</h1>
+
+												</h:column>
+												<h:column>
+													<f:facet name="header" class="warning">
+														<h:outputLabel value="Delete" />
+													</f:facet>
+													<h1>
+														<a href=""><i class="pe-7s-trash"></i></a>
+													</h1>
+
+												</h:column>
+
+												<h:column>
+													<h:form>
+														<h:commandButton
+															action="#{treatmentBean.goToSteps(cp.PatientId, cp.TreatmentId)}"
+															value="See treatment" class="btn_1" />
+
+													</h:form>
+												</h:column>
+											</tbody>
+										</h:dataTable>
+									</div>
+
 								</div>
 							</div>
 
@@ -163,8 +192,7 @@
 			</div>
 			<!-- /row -->
 		</div>
-		<!-- /container --> </main>
+		<!-- /container -->
 		<!-- /main -->
-
 	</ui:define>
 </ui:composition>

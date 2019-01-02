@@ -109,5 +109,10 @@ public class TreatmentBean {
 		}
 		return listTreatmentBean.size();
 	}
+	public String goToSteps(int idPatient, int idTreatment)
+	{ 
+		System.out.println("idPatient and idTreatment"+idPatient+" "+idTreatment);
+	return "stepsByTreatment?faces-redirect=true&idPatient="+idPatient+"&idTreatment="+idTreatment;
+	}
 	
 }
