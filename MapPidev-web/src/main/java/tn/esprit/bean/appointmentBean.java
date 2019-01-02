@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -19,7 +21,7 @@ import tn.esprit.service.UserServiceLocal;
 @ManagedBean
 @javax.faces.bean.SessionScoped
 public class appointmentBean {
-	
+	int  idPatient =1 ;
 	@EJB
 	AppointmentServiceLocal appointmentServiceLocal ;
 	@EJB
@@ -93,30 +95,34 @@ public class appointmentBean {
 		//listapp = appointmentServiceLocal.getAllAppointments() ;
 		String result = appointmentServiceLocal.getApp();
 		Gson j = new Gson();
+		
 		List<Appointment>  patients=j.fromJson(result, new TypeToken<List<Appointment>>(){}.getType());
 		System.out.println(patients.toString());
-		
-		
-		
 		
 		return patients;
 	}
 	
 	
 	
-	
-	public List<Appointment>  GetTreatmentsByPatient(int idPatient) throws ParseException
-	
+	public List<Appointment>  GetAppointmentByPatient() 
 	{		System.out.println("IdPatient="+idPatient);
-	String result = appointmentServiceLocal.getApp();
-	Gson j = new Gson();
-	List<Appointment>  patients=j.fromJson(result, new TypeToken<List<Appointment>>(){}.getType());
+	String result = appointmentServiceLocal.getAppointmentByIdPatient1(idPatient);
+	Gson g = new Gson();
+	List<Appointment>  patients=g.fromJson(result, new TypeToken<List<Appointment>>(){}.getType());
 	System.out.println(patients.toString());
 	
-
 	return patients;
 	}
 	
+	
+
+	public List<Appointment> Getapp(int idPatient)
+	{ 
+	return	appointmentServiceLocal.getAllApp(idPatient);
+		
+	}
+	
+
 	
 }
 	

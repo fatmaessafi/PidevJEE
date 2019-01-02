@@ -6,123 +6,63 @@
 	template="/WEB-INF/template/template.xhtml">
 
 	<ui:define name="title">
-		<title>Patients</title>
+		<title>All appointments</title>
 	</ui:define>
 
 	<ui:define name="content">
-		<main>
-		<div id="breadcrumb">
-			<div class="container">
-				<ul>
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Treatments</a></li>
-				</ul>
-			</div>
-		</div>
-		<!-- /breadcrumb -->
 
-		<div class="container margin_60">
-			<div class="row">
-				<aside class="col-xl-3 col-lg-4" id="sidebar">
-				<div class="box_profile">
-					<figure> <img src="../assets/img/avatarblueprofile.png"
-						alt="" class="img-fluid" /> </figure>
-					<small>Patient</small>
+		<div class="tabs_styled_2">
+			<div class="tab-content">
 
-					<h1><h:outputLabel value="#{userBean.GetUserById(param['idPatient']).firstName} #{userBean.GetUserById(param['idPatient']).lastName}"/></h1>
+				<div class="tab-pane fade show active" id="book" role="tabpanel"
+					aria-labelledby="book-tab">
+					<p class="lead add_bottom_30">All the Appointments.</p>
 
-					<ul class="statistic">
-
-						
-						<li><h:outputLabel value="#{appointmentBean.GetTreatmentsByPatient(param['idPatient'])}" /> Treatments</li>
-					</ul>
-				
-				</div>
-				</aside>
-				<!-- /aside -->
-
-				<div class="col-xl-9 col-lg-8">
-
-					<div class="tabs_styled_2">
-						<ul class="nav nav-tabs" role="tablist">
-							<li class="nav-item"><a class="nav-link active" href="">Treatments</a>
-							</li>
-							<li class="nav-item"><a class="nav-link" href=""><i
-									class="pe-7s-plus"></i>New treatment</a></li>
-
-						</ul>
-						<!--/nav-tabs -->
-
-						<div class="tab-content">
-							<div class="tab-pane fade show active" id="general"
-								role="tabpanel" aria-labelledby="general-tab">
-
-
-								<p class="lead add_bottom_30">This is all the treatments
-									that this patient is following.</p>
-
-								<div class="main_title_3">
-									<h3>Treatments</h3>
-								</div>
-								<div class="form-group add_bottom_45">
-									<h:dataTable class="table"
-										value="#{appointmentBean.GetTreatmentsByPatient(param['idPatient'])}"
-										var="cp" id="tab">
-										<tbody>
-											<h:column>
-												<f:facet name="header" class="warning">
-													<h:outputLabel value="Illness" />
-												</f:facet>
-												<h:outputText value="#{cp.appDate}" />
-											</h:column>
-											
-											
-										
-											
-											<h:column>
-												<f:facet name="header" class="warning">
-													<h:outputLabel value="View" />
-												</f:facet>
-												<h1>
-													<a href=""><i class="pe-7s-note2"></i></a>
-												</h1>
-											</h:column>
-
-											<h:column>
-												<f:facet name="header" class="warning">
-													<h:outputLabel value="Edit" />
-												</f:facet>
-												<h1>
-													<a href=""><i class="pe-7s-note"></i></a>
-												</h1>
-
-											</h:column>
-											<h:column>
-												<f:facet name="header" class="warning">
-													<h:outputLabel value="Delete" />
-												</f:facet>
-												<h1>
-													<a href=""><i class="pe-7s-trash"></i></a>
-												</h1>
-
-											</h:column>
-
-										</tbody>
-									</h:dataTable>
-								</div>
-							</div>
-
-						</div>
-						<!-- /tab-content -->
+					<div class="main_title_3">
+						<h3>Appointments</h3>
 					</div>
-					<!-- /tabs_styled -->
-				</div>
-				<!-- /col -->
-			</div>
-			<!-- /row -->
-		</div>
-		<!-- /container --> </main>
-		<!-- /main -->
+					<div class="form-group add_bottom_45">
+						<h:dataTable class="table"
+							value="#{appointmentBean.Getapp(param['idPatient'])}" var="cp" id="tab">
+							<tbody>
+							
+								<h:column>
+									<f:facet name="header" class="warning">
+										<h:outputLabel value="Appointmentdate" />
+									</f:facet>
+									<h:outputText value="#{cp.appDate}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header" class="warning">
+										<h:outputLabel value="Visit reason " />
+									</f:facet>
+									<h:outputText value="#{cp.visitReason}" />
+								</h:column>
+								
+								
+								
+								
+								
+							
+								<h:column>
+									<f:facet name="header" class="warning">
+										<h:outputLabel value="Select" />
+									</f:facet>
+									<h1>
+										<a href=""><i
+											class="pe-7s-angle-right-circle"></i></a>
+									</h1>
 
+								</h:column>
+							</tbody>
+						</h:dataTable>
+
+					</div>
+				</div>
+			</div>
+		</div>
 	</ui:define>
 </ui:composition>
+
+

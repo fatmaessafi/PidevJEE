@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.ws.rs.client.ClientBuilder;
 
 import javax.ws.rs.client.Client;
@@ -80,7 +83,36 @@ public class AppointmentService implements AppointmetServiceRemote, AppointmentS
 			 reponse.close();      
 	       return treatments;
 	    }
-	    
-	
+	   
+	   
+	   int idPatient=1;
+
+	   @Override
+		public String getAppointmentByIdPatient1(int idPatient) {
+		   Client client = ClientBuilder.newClient();
+			WebTarget target = client.target("http://localhost:21514/api/Appointmentbyid/"+1);
+			Response reponse = target.request().get();
+			String result = reponse.readEntity(String.class);
+			
+		
+			 reponse.close();      
+	       return result;
+	    }
+	   @PersistenceContext
+	   EntityManager em  ;
+	   
+	 //  int idpatient=1;
+		public List<Appointment> getAllApp( int idpatient)
+		{	
+			
+		    TypedQuery<Appointment> query = em.createQuery("Select e from Appointment e  where e.PatientId="+idpatient , Appointment.class);
+		 //  query.setParameter("valide",0);
+	 
+			List<Appointment> appointments=query.getResultList();
+			
+			return appointments;
+		}
+		
+	   
 
 }
