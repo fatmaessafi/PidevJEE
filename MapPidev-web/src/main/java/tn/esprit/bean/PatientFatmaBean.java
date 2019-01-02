@@ -13,7 +13,6 @@ import tn.esprit.entities.User;
 import tn.esprit.service.ServiceFatmaPatientLocal;
 
 @ManagedBean
-@javax.faces.bean.SessionScoped
 public class PatientFatmaBean {
 	
 	@EJB

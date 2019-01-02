@@ -9,4 +9,8 @@ import tn.esprit.entities.Step;
 @Local
 public interface ServiceStepLocal {
     public List<Step> getStepsByIdTreatment(int idTreatment) ;
+
+	void AddStep(Step e);
+
+	void DeleteStep(Step e);
 }

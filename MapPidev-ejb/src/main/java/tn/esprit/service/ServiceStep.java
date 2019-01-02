@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -21,7 +23,8 @@ import tn.esprit.entities.Treatment;
 @Stateless
 @LocalBean
 public class ServiceStep implements ServiceStepRemote, ServiceStepLocal {
-
+	@PersistenceContext
+	EntityManager em;
     /**
      * Default constructor. 
      */
@@ -40,4 +43,16 @@ public class ServiceStep implements ServiceStepRemote, ServiceStepLocal {
 		 reponse.close();      
        return steps;
     }
+    
+    @Override
+	public void AddStep(Step e) {
+		// TODO Auto-generated method stub
+		em.merge(e);		
+	}
+
+	@Override
+	public void DeleteStep(Step e) {
+		em.remove(em.contains(e) ?e: em.merge(e));
+		
+	}
 }

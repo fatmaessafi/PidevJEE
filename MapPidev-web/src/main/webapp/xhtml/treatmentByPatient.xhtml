@@ -91,6 +91,7 @@
 									<div class="main_title_3">
 										<h3>Treatments</h3>
 									</div>
+									<!-- Pie -->
 									<div>
 										<input type="hidden"
 											value="#{chartJsView.getPourcentageValid(param['idPatient'])}"
@@ -124,7 +125,7 @@
 
 										<div id="piechart" style="width: 900px; height: 500px;"></div>
 									</div>
-
+<!-- !Pie -->
 									<div class="form-group add_bottom_45">
 										<h:dataTable class="table"
 											value="#{treatmentBean.GetTreatmentsByPatient(param['idPatient'])}"

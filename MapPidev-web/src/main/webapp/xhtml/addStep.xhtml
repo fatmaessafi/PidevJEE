@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="title">
+		<title>Add step</title>
+	</ui:define>
+
+	<ui:define name="content">
+		<div id="breadcrumb">
+			<div class="container">
+				<ul>
+					<li>Home</li>
+					<li>Treatments</li>
+					<li>Steps</li>
+				</ul>
+			</div>
+		</div>
+		<!-- /breadcrumb -->
+
+		<div class="container margin_60">
+			<div class="row">
+				<aside class="col-xl-3 col-lg-4" id="sidebar">
+				<div class="box_profile">
+					<figure> <img src="../assets/img/avatarblueprofile.png"
+						alt="" class="img-fluid" /> </figure>
+					<small>Patient</small>
+
+					<h1>
+						<h:outputLabel
+							value="#{userBean.GetUserById(param['idPatient']).firstName} #{userBean.GetUserById(param['idPatient']).lastName}" />
+					</h1>
+
+					<ul class="statistic">
+
+						<li><h:outputLabel
+								value="#{treatmentBean.nbTreatments(param['idPatient'])}" />
+							Treatments</li>
+					</ul>
+					<ul class="contacts">
+						<li><h6>Profession</h6> <h:outputLabel
+								value="#{userBean.GetUserById(param['idPatient']).profession}" />
+						</li>
+						<li><h6>Civil Status</h6> <h:outputLabel
+								value="#{userBean.GetUserById(param['idPatient']).civilStatus}" />
+						</li>
+						<li><h6>City</h6> <h:outputLabel
+								value="#{userBean.GetUserById(param['idPatient']).city}" /></li>
+						<li><h6>Address</h6> <h:outputLabel
+								value="#{userBean.GetUserById(param['idPatient']).homeAddress}" />
+						</li>
+						<li><h6>Phone</h6> <h:outputLabel
+								value="#{userBean.GetUserById(param['idPatient']).phoneNumber}" />
+						</li>
+						<li><h6>Allergies</h6> <h:outputLabel
+								value="#{userBean.GetUserById(param['idPatient']).allergies}" />
+						</li>
+						<li><h6>Special Requirements</h6> <h:outputLabel
+								value="#{userBean.GetUserById(param['idPatient']).specialReq}" />
+						</li>
+
+					</ul>
+
+				</div>
+				</aside>
+				<!-- /aside -->
+				<div class="col-xl-9 col-lg-8">
+
+					<div class="tabs_styled_2">
+						<ul class="nav nav-tabs" role="tablist">
+							<li class="nav-item"><a class="nav-link" href="">Steps</a></li>
+							<li class="nav-item"><a class="nav-link active" href=""><i
+									class="pe-7s-plus"></i>New step</a></li>
+
+						</ul>
+						<!--/nav-tabs -->
+
+						<div class="tab-content">
+							<div class="tab-pane fade show active" id="book" role="tabpanel"
+								aria-labelledby="book-tab">
+								<p class="lead add_bottom_30">Add a new step.</p>
+
+								<div class="main_title_3">
+									<h3>Add step</h3>
+								</div>
+
+								<div class="form-group add_bottom_45">
+
+									<h:form class="form-horizontal" role="form">
+
+
+										<div class="form-horizontal">
+											<div class="form-group">
+
+												<label>Speciality</label>
+												<h:selectOneMenu name="Speciality"
+													value="#{addStepBean.stepSpeciality}" class="form-control" id="StepSpeciality">
+
+													<f:selectItem itemLabel="---" noSelectionOption="true" />
+													<f:selectItem itemValue="Dentistry" itemLabel="Dentistry" />
+													<f:selectItem itemValue="Cardiology" itemLabel="Cardiology" />
+													<f:selectItem itemValue="Neurology" itemLabel="Neurology" />
+
+
+												</h:selectOneMenu>
+											</div>
+
+											<div class="form-group">
+												<label>Step Date</label> <br />
+
+												<p:inputText type="text" value="#{addStepBean.timeStep}"
+													id="TimeStep" class="form-control" />
+											</div>
+
+											<div class="form-group">
+												<label>Step Description</label> <br />
+												<p:inputText type="text"
+													value="#{addStepBean.stepDescription}" id="StepDescription"
+													class="form-control" />
+											</div>
+											<h:commandButton
+												action="#{addStepBean.addStep(param['idTreatment'])}"
+												value="Add" class="btn_1" />
+
+										</div>
+									</h:form>
+
+
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

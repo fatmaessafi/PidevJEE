@@ -10,4 +10,8 @@ import tn.esprit.entities.Step;
 public interface ServiceStepRemote {
     public List<Step> getStepsByIdTreatment(int idTreatment) ;
 
+	void AddStep(Step e);
+
+	void DeleteStep(Step e);
+
 }

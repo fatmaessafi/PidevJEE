@@ -12,7 +12,6 @@ import tn.esprit.service.ServiceTreatmentLocal;
 import tn.esprit.service.UserServiceLocal;
 
 @ManagedBean
-@javax.faces.bean.SessionScoped
 public class TreatmentBean {
 	
 	private int treatmentId;
