@@ -21,6 +21,7 @@ import tn.esprit.entities.User;
 import tn.esprit.vm.RegisterVM;
 
 import tn.esprit.entities.Appointment;
+import tn.esprit.entities.Treatment;
 
 
 /**
@@ -67,7 +68,19 @@ public class AppointmentService implements AppointmetServiceRemote, AppointmentS
 	
 	
 
-
+	   @Override
+		public List<Appointment> getAppointmentByIdPatient(int idPatient) {
+			Client client = ClientBuilder.newClient();
+			WebTarget target = client.target("http://localhost:21514/api/Appointmentbyid/"+idPatient);
+			Response reponse = target.request().get();
+			String result = reponse.readEntity(String.class);
+			Gson j = new Gson();
+			List<Appointment>  treatments=j.fromJson(result, new TypeToken<List<Appointment>>(){}.getType());
+			System.out.println("result="+result);
+			 reponse.close();      
+	       return treatments;
+	    }
+	    
 	
 
 }

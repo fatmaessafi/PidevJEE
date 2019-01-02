@@ -10,5 +10,6 @@ import tn.esprit.entities.User;
 public interface AppointmentServiceLocal {
 	public List<Appointment> getAllAppointments() ;
 	public String getApp();
+	public List<Appointment> getAppointmentByIdPatient(int idPatient);
 
 }

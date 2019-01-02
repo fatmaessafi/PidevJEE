@@ -11,8 +11,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import tn.esprit.entities.Appointment;
-
+import tn.esprit.entities.Treatment;
 import tn.esprit.service.AppointmentServiceLocal;
+import tn.esprit.service.UserServiceLocal;
 
 
 @ManagedBean
@@ -21,7 +22,8 @@ public class appointmentBean {
 	
 	@EJB
 	AppointmentServiceLocal appointmentServiceLocal ;
-
+	@EJB
+	UserServiceLocal serviceUserLocal;
 	List<Appointment> listapp = new ArrayList<>();
 
 	
@@ -93,8 +95,28 @@ public class appointmentBean {
 		Gson j = new Gson();
 		List<Appointment>  patients=j.fromJson(result, new TypeToken<List<Appointment>>(){}.getType());
 		System.out.println(patients.toString());
+		
+		
+		
+		
 		return patients;
 	}
+	
+	
+	
+	
+	public List<Appointment>  GetTreatmentsByPatient(int idPatient) throws ParseException
+	
+	{		System.out.println("IdPatient="+idPatient);
+	String result = appointmentServiceLocal.getApp();
+	Gson j = new Gson();
+	List<Appointment>  patients=j.fromJson(result, new TypeToken<List<Appointment>>(){}.getType());
+	System.out.println(patients.toString());
+	
+
+	return patients;
+	}
+	
 	
 }
 	
