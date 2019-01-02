@@ -21,6 +21,18 @@ public class Report implements Serializable {
 
 	@Column(name="ReportDate")
 	private String ReportDate;
+	@Column(name="ReportTitle")
+	private String ReportTitle;
+
+	public String getReportTitle() {
+		return ReportTitle;
+	}
+
+
+	public void setReportTitle(String reportTitle) {
+		ReportTitle = reportTitle;
+	}
+
 
 	public int getReportId() {
 		return ReportId;

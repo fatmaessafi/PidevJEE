@@ -31,7 +31,7 @@
 									<f:facet name="header" class="warning">
 										<h:outputLabel value="Title" />
 									</f:facet>
-									<h:outputText value="#{cp.reportId}" />
+									<h:outputText value="#{cp.reportTitle}" />
 								</h:column>
 								<h:column>
 									<f:facet name="header" class="warning">
@@ -44,7 +44,7 @@
 									<f:facet name="header" class="warning">
 										<h:outputLabel value="Date" />
 									</f:facet>
-									<h:outputText value="#{cp.reportDate}"/>
+									<h:outputText value="#{cp.reportDate.toString().substring(0,10)}"/>
 								</h:column>
 								
 								
