@@ -18,31 +18,31 @@ public class Step implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="StepId")
-	private int stepId;
+	private int StepId;
 
 	@Column(name="LastModificationBy")
-	private int lastModificationBy;
+	private int LastModificationBy;
 
 	@Column(name="LastModificationDate")
-	private String lastModificationDate;
+	private String LastModificationDate;
 
 	@Column(name="ModificationReason")
-	private String modificationReason;
+	private String ModificationReason;
 
 	@Column(name="NbModifications")
-	private int nbModifications;
+	private int NbModifications;
 
 	@Column(name="StepDate")
-	private String stepDate;
+	private String StepDate;
 
 	@Column(name="StepDescription")
-	private String stepDescription;
+	private String StepDescription;
 
 	@Column(name="StepSpeciality")
-	private String stepSpeciality;
+	private String StepSpeciality;
 
 	@Column(name="Validation")
-	private boolean validation;
+	private boolean Validation;
 
 	//bi-directional many-to-one association to Appointment
 	@OneToMany(mappedBy="Step")
@@ -62,101 +62,87 @@ public class Step implements Serializable {
 	}
 
 	public int getStepId() {
-		return this.stepId;
+		return StepId;
 	}
 
 	public void setStepId(int stepId) {
-		this.stepId = stepId;
+		StepId = stepId;
 	}
 
 	public int getLastModificationBy() {
-		return this.lastModificationBy;
+		return LastModificationBy;
 	}
 
 	public void setLastModificationBy(int lastModificationBy) {
-		this.lastModificationBy = lastModificationBy;
+		LastModificationBy = lastModificationBy;
 	}
 
 	public String getLastModificationDate() {
-		return this.lastModificationDate;
+		return LastModificationDate;
 	}
 
 	public void setLastModificationDate(String lastModificationDate) {
-		this.lastModificationDate = lastModificationDate;
+		LastModificationDate = lastModificationDate;
 	}
 
 	public String getModificationReason() {
-		return this.modificationReason;
+		return ModificationReason;
 	}
 
 	public void setModificationReason(String modificationReason) {
-		this.modificationReason = modificationReason;
+		ModificationReason = modificationReason;
 	}
 
 	public int getNbModifications() {
-		return this.nbModifications;
+		return NbModifications;
 	}
 
 	public void setNbModifications(int nbModifications) {
-		this.nbModifications = nbModifications;
+		NbModifications = nbModifications;
 	}
 
 	public String getStepDate() {
-		return this.stepDate;
+		return StepDate;
 	}
 
 	public void setStepDate(String stepDate) {
-		this.stepDate = stepDate;
+		StepDate = stepDate;
 	}
 
 	public String getStepDescription() {
-		return this.stepDescription;
+		return StepDescription;
 	}
 
 	public void setStepDescription(String stepDescription) {
-		this.stepDescription = stepDescription;
+		StepDescription = stepDescription;
 	}
 
 	public String getStepSpeciality() {
-		return this.stepSpeciality;
+		return StepSpeciality;
 	}
 
 	public void setStepSpeciality(String stepSpeciality) {
-		this.stepSpeciality = stepSpeciality;
+		StepSpeciality = stepSpeciality;
 	}
 
-	public boolean getValidation() {
-		return this.validation;
+	public boolean isValidation() {
+		return Validation;
 	}
 
 	public void setValidation(boolean validation) {
-		this.validation = validation;
+		Validation = validation;
 	}
 
 	public List<Appointment> getAppointments() {
-		return this.appointments;
+		return appointments;
 	}
 
 	public void setAppointments(List<Appointment> appointments) {
 		this.appointments = appointments;
 	}
 
-	public Appointment addAppointment(Appointment appointment) {
-		getAppointments().add(appointment);
-		appointment.setStep(this);
-
-		return appointment;
-	}
-
-	public Appointment removeAppointment(Appointment appointment) {
-		getAppointments().remove(appointment);
-		appointment.setStep(null);
-
-		return appointment;
-	}
-
 	public Appointment getAppointment() {
-		return this.appointment;
+		return appointment;
 	}
 
 	public void setAppointment(Appointment appointment) {
@@ -164,11 +150,17 @@ public class Step implements Serializable {
 	}
 
 	public Treatment getTreatment() {
-		return this.treatment;
+		return treatment;
 	}
 
 	public void setTreatment(Treatment treatment) {
 		this.treatment = treatment;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
 
 }
