@@ -119,7 +119,7 @@ public class User implements Serializable {
 	private List<Analytic> analytics;
 
 	// bi-directional many-to-one association to Appointment
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "User")
 	private List<Appointment> appointments;
 
 	// bi-directional many-to-one association to CustomUserClaim

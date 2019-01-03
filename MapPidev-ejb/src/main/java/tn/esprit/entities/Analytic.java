@@ -3,6 +3,8 @@ package tn.esprit.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 /**
  * The persistent class for the Analytics database table.
@@ -11,6 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="Analytics")
 @NamedQuery(name="Analytic.findAll", query="SELECT a FROM Analytic a")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Analytic implements Serializable {
 	private static final long serialVersionUID = 1L;
 

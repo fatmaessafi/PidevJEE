@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="title">
+		<title>Doctors</title>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<div class="tabs_styled_2">
+			<div class="tab-content">
+
+     <div class="row">
+                <div class="col-md-6">
+                    <h4><strong>Showing 10</strong> of 140 results</h4>
+                </div>
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                            <input type="text" id="Search" placeholder="Search :  Ex. Specialist, Name, Doctor..." class="form-control" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+				<div class="tab-pane fade show active" id="book" role="tabpanel"
+					aria-labelledby="book-tab">
+					<p class="lead add_bottom_30">All the Doctors near you.</p>
+<div class="Search">
+					<div class="main_title_3">
+						<h3>Doctors</h3>
+					</div>
+					<div class="form-group add_bottom_45">
+					
+						
+						<h:dataTable class="table" 
+							value="#{listdocBean.GetAllDoctors()}" var="cp" id="tab">
+								<div class="Search">
+							<tbody>
+							
+								
+								<h:column>
+									<f:facet name="header" class="warning">
+										<h:outputLabel value="Avatar" />
+									</f:facet>
+									<img src="../assets/img/doctor_listing_4.jpg" width="60" height="80" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header" class="warning">
+										<h:outputLabel value="First Name" />
+									</f:facet>
+									<h:outputText value="#{cp.firstName}"  />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header" class="warning">
+										<h:outputLabel value="Last Name" />
+									</f:facet>
+									<h:outputText value="#{cp.lastName}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header" class="warning">
+										<h:outputLabel value="Gender" />
+									</f:facet>
+									<h:outputText value="#{cp.gender}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header" class="warning">
+										<h:outputLabel value="Speciality" />
+									</f:facet>
+									<h:outputText value="#{cp.speciality}" />
+								</h:column>
+							
+								<h:column>
+									<f:facet name="header" class="warning">
+										<h:outputLabel value="City" />
+									</f:facet>
+									<h:outputText value="#{cp.city}" />
+								</h:column>
+								
+								
+								
+							
+							
+								
+								<h:column>
+									<f:facet name="header" class="warning">
+										<h:outputLabel value="Appointment" />
+									</f:facet>
+									<h1>
+										<a href=""><i
+											class="pe-7s-angle-right-circle"></i></a>
+									</h1>
+
+								</h:column>
+								
+							
+									
+										
+							</tbody>
+							</div>
+						</h:dataTable>
+						
+							</div>	
+
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
+		<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+		<script>
+                   $(document).ready(function () {
+
+                function Contains(text_one,text_two){
+                if(text_one.indexOf(text_two) != -1)
+	                return true;
+                }
+
+
+                $("#Search").keyup(function(){
+
+                var searchText = $("#Search").val().toLowerCase();
+                $(".Search").each(function () {
+
+                if(!Contains($(this).text().toLowerCase(),searchText))
+                     {      $(this).hide();}
+                     else{
+
+                $(this).show();
+                          }
+
+                    });
+
+                    });
+
+                        });
+    </script>
+		
+		
+		
+	</ui:define>
+</ui:composition>
+
+

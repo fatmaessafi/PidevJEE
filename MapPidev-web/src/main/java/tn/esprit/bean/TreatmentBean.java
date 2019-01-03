@@ -68,6 +68,8 @@ public class TreatmentBean {
 	public void setNbTreat(int nbTreat) {
 		this.nbTreat = nbTreat;
 	}
+	
+	
 	public List<TreatmentBean>  GetTreatmentsByPatient(int idPatient) throws ParseException
 	{		System.out.println("IdPatient="+idPatient);
 		listTreatments = serviceTreatmentLocal.getTreatmentByIdPatient(idPatient) ;
@@ -88,6 +90,9 @@ public class TreatmentBean {
 		}
 		return listTreatmentBean;
 	}
+	
+	
+	
 	public int nbTreatments(int idPatient)
 	{
 		System.out.println("IdPatient="+idPatient);

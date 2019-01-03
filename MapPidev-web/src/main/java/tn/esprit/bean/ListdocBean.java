@@ -1,23 +1,21 @@
 package tn.esprit.bean;
 
-import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 
 import tn.esprit.entities.User;
-import tn.esprit.service.ServiceFatmaPatientLocal;
+import tn.esprit.service.ListdocService;;
 
 @ManagedBean
-
-public class PatientFatmaBean {
+@javax.faces.bean.SessionScoped
+public class ListdocBean {
 	
 	@EJB
-	ServiceFatmaPatientLocal serviceFatmaPatientLocal ;
+	ListdocService serviceFatmaPatientLocal ;
 
 	List<User> listPatients = new ArrayList<>();
 
@@ -184,20 +182,16 @@ public class PatientFatmaBean {
 
 	
 	
-	public List<User>  GetAllPatients() throws ParseException
+	public List<User>  GetAllDoctors() throws ParseException
 	{
-		listPatients = serviceFatmaPatientLocal.getAllPatients() ;
+		listPatients = serviceFatmaPatientLocal.getAllDoctors() ;
 		for( User u :  listPatients)
 		{
 			
-			//System.out.println(u.getFirstName());
+			System.out.println(u.getFirstName());
 		}
 		return listPatients;
 	}
-	public String getTreatment(int idPatient)
-	{ 
-		System.out.println("selected="+idPatient);
-	return "treatmentByPatient?faces-redirect=true&idPatient="+idPatient;
-	}
+	
 }
 	
