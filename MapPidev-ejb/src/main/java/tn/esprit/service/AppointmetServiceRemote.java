@@ -16,5 +16,6 @@ public interface AppointmetServiceRemote {
 	public List<Appointment> getAppointmentByIdPatient(int idPatient);
 	public String getAppointmentByIdPatient1(int idPatient) ;
 	public List<Appointment> getAllApp(int idpatient);
+	   public void addrdv(Appointment a);
 
 }

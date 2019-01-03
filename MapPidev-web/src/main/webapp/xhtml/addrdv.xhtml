@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="title">
+		<title>Ajouter Rdv</title>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<div class="tabs_styled_2">
+			<div class="tab-content">
+
+				<div class="tab-pane fade show active" id="book" role="tabpanel"
+					aria-labelledby="book-tab">
+					<p class="lead add_bottom_30">Ajouter rdv.</p>
+
+					<div class="main_title_3">
+						<h3>RDV</h3>
+					</div>
+					<div class="form-group add_bottom_45">
+						<h:form>
+	<h:panelGrid columns="2">
+	<h:outputText value="appdate)" />
+	<h:inputText value="#{appointmentBean.appDate}" >
+	<f:convertDateTime pattern="dd-MM-yyyy"/>
+	</h:inputText>
+
+	
+	
+	<h:commandButton id="btn" action="#{appointmentBean.addrdvv()}" value="AddRdv" />
+	<h:message for="btn"/>
+	</h:panelGrid>
+	
+	</h:form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+
+

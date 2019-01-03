@@ -146,6 +146,19 @@ public class Appointment implements Serializable {
 
 		return Step;
 	}
+	
+	
+
+	public Appointment( String appDate, int appRate, int patientId, String visitReason) {
+		super();
+	
+		this.AppDate = appDate;
+		this.AppRate = appRate;
+		this.PatientId = patientId;
+		this.VisitReason = visitReason;
+		
+	}
+	
 
 	@Override
 	public String toString() {

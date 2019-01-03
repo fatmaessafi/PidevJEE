@@ -1,6 +1,8 @@
 
 package tn.esprit.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -113,6 +115,17 @@ public class AppointmentService implements AppointmetServiceRemote, AppointmentS
 			return appointments;
 		}
 		
-	   
+		   @Override
+		   public void addrdv(Appointment a)
+		   {
+			
+			  em.persist(a);
+		
+			   
+		   }
+	
+		
+		
+		
 
 }
