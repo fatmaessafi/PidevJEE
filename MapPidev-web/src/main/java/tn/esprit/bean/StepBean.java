@@ -15,7 +15,7 @@ import tn.esprit.service.ServiceStepLocal;
 import tn.esprit.service.UserServiceLocal;
 
 @ManagedBean
-@SessionScoped
+
 public class StepBean {
 	private int StepId;
 

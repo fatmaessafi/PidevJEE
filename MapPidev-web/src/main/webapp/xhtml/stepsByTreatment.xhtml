@@ -170,7 +170,11 @@
 																</div> <!-- /pricing-body --> <footer class="pricing-footer">
 																<a class="select-plan" href="">Select</a>
 																<h3 align="right">
-																	<a href=""><i class="pe-7s-trash"></i></a>
+																	<h:form>
+																	<h:commandButton
+												action="#{addStepBean.removeStep(cp)}"
+												value="Remove" class="btn_1" oncomplete="location.reload()"/>
+																	</h:form>
 																</h3>
 																</footer></li>
 														</ul>

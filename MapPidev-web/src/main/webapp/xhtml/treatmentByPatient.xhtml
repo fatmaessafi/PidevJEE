@@ -3,6 +3,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	template="/WEB-INF/template/template.xhtml">
 
 	<ui:define name="title">
@@ -125,11 +126,35 @@
 
 										<div id="piechart" style="width: 900px; height: 500px;"></div>
 									</div>
-<!-- !Pie -->
+									<!-- !Pie -->
 									<div class="form-group add_bottom_45">
-										<h:dataTable class="table"
+										<h:dataTable class="table" scope="request"
 											value="#{treatmentBean.GetTreatmentsByPatient(param['idPatient'])}"
-											var="cp1" id="tab1">
+											var="cp1" id="d" paginatorTemplate="{Exporters}">
+											<f:facet name="{Exporters}">
+
+												<h:commandLink>
+													<img src="img" name="excel.png" />
+													<p:dataExporter type="xls" target="d" fileName="demands"
+														encoding="UTF-8" />
+												</h:commandLink>
+
+												<h:commandLink>
+													<h:graphicImage library="img" name="pdf.png" />
+													<p:dataExporter type="pdf" target="d" fileName="demands"
+														encoding="UTF-8" />
+												</h:commandLink>
+
+												<h:commandLink>
+													<h:graphicImage library="img" name="csv.png" />
+													<p:dataExporter type="csv" target="d" fileName="demands"
+														encoding="UTF-8" />
+												</h:commandLink>
+												<h:commandLink>
+													<h:graphicImage library="img" name="xml.png" />
+													<p:dataExporter type="xml" target="d" fileName="demands" />
+												</h:commandLink>
+											</f:facet>
 											<tbody>
 												<h:column>
 													<f:facet name="header" class="warning">
@@ -171,15 +196,22 @@
 
 												<h:column>
 													<h:form>
-														<h:commandButton
-															action="#{treatmentBean.goToSteps(cp.PatientId, cp.TreatmentId)}"
-															value="See treatment" class="btn_1" />
+														<h:commandButton value="See treatment"
+															action="#{treatmentBean.goToSteps(cp.patientId, cp.treatmentId)}"
+															class="btn_1" />
 
 													</h:form>
 												</h:column>
 											</tbody>
 										</h:dataTable>
+
+										<h:form>
+											<h:commandButton action="#{treatmentBean.goToSteps(1, 2)}"
+												value="Treatment" class="btn_1" />
+
+										</h:form>
 									</div>
+
 
 								</div>
 							</div>

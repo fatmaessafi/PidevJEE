@@ -17,6 +17,7 @@ import tn.esprit.service.UserServiceLocal;
 import tn.esprit.vm.RegisterVM;
 
 @ManagedBean
+
 @javax.faces.bean.SessionScoped
 public class testBean {
 	@EJB

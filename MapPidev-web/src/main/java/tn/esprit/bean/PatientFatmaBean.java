@@ -13,6 +13,7 @@ import tn.esprit.entities.User;
 import tn.esprit.service.ServiceFatmaPatientLocal;
 
 @ManagedBean
+
 public class PatientFatmaBean {
 	
 	@EJB

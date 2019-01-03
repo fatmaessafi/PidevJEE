@@ -106,4 +106,8 @@ public class UserBean {
 	public User GetCurrentUser() {
 		return UserService.CurrentUser;
 	}
+	public void Logout()
+	{
+		UserService.CurrentUser=null;
+	}
 }

@@ -161,6 +161,15 @@ public class Step implements Serializable {
 		return serialVersionUID;
 	}
 
+	@Override
+	public String toString() {
+		return "Step [StepId=" + StepId + ", LastModificationBy=" + LastModificationBy + ", LastModificationDate="
+				+ LastModificationDate + ", ModificationReason=" + ModificationReason + ", NbModifications="
+				+ NbModifications + ", StepDate=" + StepDate + ", StepDescription=" + StepDescription
+				+ ", StepSpeciality=" + StepSpeciality + ", Validation=" + Validation + ", appointments=" + appointments
+				+ ", appointment=" + appointment + ", treatment=" + treatment + "]";
+	}
+
 	
 
 }
