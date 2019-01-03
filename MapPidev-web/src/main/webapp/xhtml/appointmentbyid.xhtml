@@ -6,7 +6,7 @@
 	template="/WEB-INF/template/template.xhtml">
 
 	<ui:define name="title">
-		<title>Patients</title>
+		<title>appointment</title>
 	</ui:define>
 
 	<ui:define name="content">
@@ -15,7 +15,7 @@
 			<div class="container">
 				<ul>
 					<li><a href="#">Home</a></li>
-					<li><a href="#">Treatments</a></li>
+					<li><a href="#">appointment</a></li>
 				</ul>
 			</div>
 		</div>
@@ -27,7 +27,7 @@
 				<div class="box_profile">
 					<figure> <img src="../assets/img/avatarblueprofile.png"
 						alt="" class="img-fluid" /> </figure>
-					<small>Patient</small>
+					<small>your appointment</small>
 
 					<h1><h:outputLabel value="#{userBean.GetUserById(param['idPatient']).firstName} #{userBean.GetUserById(param['idPatient']).lastName}"/></h1>
 
@@ -71,12 +71,17 @@
 										<tbody>
 											<h:column>
 												<f:facet name="header" class="warning">
-													<h:outputLabel value="Illness" />
+													<h:outputLabel value="App date" />
 												</f:facet>
 												<h:outputText value="#{cp.appDate}" />
 											</h:column>
 											
-											
+											<h:column>
+												<f:facet name="header" class="warning">
+													<h:outputLabel value="visit reason" />
+												</f:facet>
+												<h:outputText value="#{cp.visitReason}" />
+											</h:column>
 										
 											
 											<h:column>

@@ -7,13 +7,14 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import tn.esprit.entities.User;
 import tn.esprit.service.ServiceFatmaPatientLocal;
 
 @ManagedBean
-
+@SessionScoped
 public class PatientFatmaBean {
 	
 	@EJB

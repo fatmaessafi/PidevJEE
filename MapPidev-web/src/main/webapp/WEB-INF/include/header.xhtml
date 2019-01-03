@@ -1,80 +1,72 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-      
-	
-	<header class="header_sticky">	
-		<a href="#menu" class="btn_mobile">
-			<div class="hamburger hamburger--spin" id="hamburger">
-				<div class="hamburger-box">
-					<div class="hamburger-inner"></div>
-				</div>
-			</div>
-		</a>
-		<!-- /btn_mobile-->
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-6">
-					<div id="logo_home">
-						<h1><a href="index-2.html" title="Findoctor">Findoctor</a></h1>
-					</div>
-				</div>
-				<div class="col-lg-9 col-6">
-				<c:if test="#{userBean.GetCurrentUser().id eq 0}">
-				
-					<ul id="top_access">
-						<li><a href="login.html"><i class="pe-7s-user"></i></a></li>
-						<li><a href="register-doctor.html"><i class="pe-7s-add-user"></i></a></li>
-					</ul>
-					
-</c:if>
-<c:if test="#{not empty userBean.GetCurrentUser() }">
-<ul id="top_access">
- <li>
-                                            <a action="#{userBean.Logout()}">
-                                                <i class="pe-7s-delete-user"></i>
-                                            </a>
-                                        </li>
-</ul>
-</c:if>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-					<nav id="menu" class="main-menu">
-						<ul>
-						<c:if test="#{not empty userBean.GetCurrentUser()  or userBean.GetCurrentUser().discriminator eq 'Doctor'}">
-							<li>
-								<span><a href="#0">Home</a></span>
-								
-							</li>
-							<li>
-								<span><a href="#0">Pages</a></span>
-								
-							</li>
-							<li>
-								<span><a href="#0">Extra Elements</a></span>
-								
-							</li>
-                            <li><span><a href="menu_2/index.html">Menu V2</a></span></li>
-							<li><span><a href="admin_section/index.html" target="_blank">Admin</a></span></li>
-							<li><span><a href="https://themeforest.net/item/findoctor-doctors-directory-and-book-online-template/20876478?ref=ansonika">Buy this template</a></span></li>
-						
-						</c:if>
-						
-						<c:if test="#{not empty userBean.GetCurrentUser()  or userBean.GetCurrentUser().discriminator eq 'Patient'}">
-						
-						</c:if>
-						<c:if test="#{empty userBean.GetCurrentUser()}">
-						
-						</c:if>
-						</ul>
-					</nav>
-					<!-- /main-menu -->
-				</div>
+
+	<header class="header_sticky"> <a href="#menu"
+		class="btn_mobile">
+		<div class="hamburger hamburger--spin" id="hamburger">
+			<div class="hamburger-box">
+				<div class="hamburger-inner"></div>
 			</div>
 		</div>
-		<!-- /container -->
-	</header>
+	</a> <!-- /btn_mobile-->
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3 col-6">
+				<div id="logo_home">
+					<h1>
+						<a href="index-2.html" title="Findoctor">Findoctor</a>
+					</h1>
+				</div>
+			</div>
+			<div class="col-lg-9 col-6">
+				<c:if test="#{empty userBean.GetCurrentUser()}">
+
+					<ul id="top_access">
+						<li><a href="login.jsf"><i class="pe-7s-user"></i></a></li>
+						<li><a href="register.jsf"><i class="pe-7s-add-user"></i></a></li>
+					</ul>
+
+				</c:if>
+				<c:if test="#{not empty userBean.GetCurrentUser() }">
+					<ul id="top_access">
+						<li><a action="#{userBean.Logout()}"> <i
+								class="pe-7s-delete-user"></i>
+						</a></li>
+					</ul>
+				</c:if>
+
+				<nav id="menu" class="main-menu">
+				<ul>
+					<c:if test="#{userBean.GetCurrentUser().discriminator eq 'Doctor'}">
+						<h:outputLabel
+							value="Connected as doctor #{userBean.GetCurrentUser().firstName}" />
+						<li><span><a href="index.jsf">Home</a></span></li>
+						<li><span><a href="allPatients.jsf">Patients</a></span></li>
+
+
+
+					</c:if>
+
+					<c:if
+						test="#{userBean.GetCurrentUser().discriminator eq 'Patient'}">
+						<h:outputLabel
+							value="Connected as patient #{userBean.GetCurrentUser().firstName}" />
+
+						<li><span><a href="index.jsf">Home</a></span></li>
+						<li><span><a href="myTreatment.jsf">My treatment</a></span></li>
+					</c:if>
+
+				</ul>
+				</nav>
+				<!-- /main-menu -->
+			</div>
+		</div>
+	</div>
+	<!-- /container --> </header>
 	<!-- /header -->
 </ui:composition>

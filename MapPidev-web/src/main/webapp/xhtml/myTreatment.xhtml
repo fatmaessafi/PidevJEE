@@ -29,20 +29,20 @@
 						alt="" class="img-fluid" /> </figure>
 					<small>Patient</small>
 
-					<h1><h:outputLabel value="#{userBean.GetCurrentUser().firstName} #{userBean.GetCurrentUser().lastName}"/></h1>
+					<h1><h:outputLabel value="#{userBean.GetUserById(1).firstName} #{userBean.GetUserById(1).lastName}"/></h1>
 
 					<ul class="statistic">
 
-						<li><h:outputLabel value="#{treatmentBean.nbTreatments(userBean.GetCurrentUser().id)}" /> Treatments </li>
+						<li><h:outputLabel value="#{treatmentBean.nbTreatments(userBean.GetUserById(1).id)}" /> Treatments </li>
 					</ul>
 					<ul class="contacts">
-						<li><h6>Profession</h6><h:outputLabel value="#{userBean.GetCurrentUser().profession}"/> </li>
-						<li><h6>Civil Status</h6><h:outputLabel value="#{userBean.GetCurrentUser().civilStatus}"/> </li>
-						<li><h6>City</h6><h:outputLabel value="#{userBean.GetCurrentUser().city}"/> </li>
-						<li><h6>Address</h6><h:outputLabel value="#{userBean.GetCurrentUser().homeAddress}"/> </li>
-						<li><h6>Phone</h6><h:outputLabel value="#{userBean.GetCurrentUser().phoneNumber}"/> </li>
-						<li><h6>Allergies</h6><h:outputLabel value="#{userBean.GetCurrentUser().allergies}"/> </li>
-						<li><h6>Special Requirements</h6><h:outputLabel value="#{userBean.GetCurrentUser().specialReq}"/> </li>
+						<li><h6>Profession</h6><h:outputLabel value="#{userBean.GetUserById(1).profession}"/> </li>
+						<li><h6>Civil Status</h6><h:outputLabel value="#{userBean.GetUserById(1).civilStatus}"/> </li>
+						<li><h6>City</h6><h:outputLabel value="#{userBean.GetUserById(1).city}"/> </li>
+						<li><h6>Address</h6><h:outputLabel value="#{userBean.GetUserById(1).homeAddress}"/> </li>
+						<li><h6>Phone</h6><h:outputLabel value="#{userBean.GetUserById(1).phoneNumber}"/> </li>
+						<li><h6>Allergies</h6><h:outputLabel value="#{userBean.GetUserById(1).allergies}"/> </li>
+						<li><h6>Special Requirements</h6><h:outputLabel value="#{userBean.GetUserById(1).specialReq}"/> </li>
 
 					</ul>
 
@@ -74,7 +74,7 @@
 								</div>
 								<div class="form-group add_bottom_45">
 									<h:dataTable class="table"
-										value="#{treatmentBean.GetTreatmentsByPatient(userBean.GetCurrentUser().id)}"
+										value="#{treatmentBean.GetTreatmentsByPatient(userBean.GetUserById(1).id)}"
 										var="cp" id="tab">
 										<tbody>
 											<h:column>
@@ -100,7 +100,7 @@
 													<h:outputLabel value="View" />
 												</f:facet>
 												<h1>
-													<a href=""><i class="pe-7s-note2"></i></a>
+													<a href="stepsByTreatment.jsf?idTreatment=#{cp.treatmentId}"><i class="pe-7s-note2"></i></a>
 												</h1>
 											</h:column>
 

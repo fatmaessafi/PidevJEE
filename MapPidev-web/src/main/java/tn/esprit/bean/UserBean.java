@@ -106,8 +106,9 @@ public class UserBean {
 	public User GetCurrentUser() {
 		return UserService.CurrentUser;
 	}
-	public void Logout()
+	public String Logout()
 	{
 		UserService.CurrentUser=null;
+		return "Login?faces-redirect=true";
 	}
 }

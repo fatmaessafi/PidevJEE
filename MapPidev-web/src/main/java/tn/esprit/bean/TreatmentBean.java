@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
 
 import tn.esprit.entities.Treatment;
@@ -12,6 +13,7 @@ import tn.esprit.service.ServiceTreatmentLocal;
 import tn.esprit.service.UserServiceLocal;
 
 @ManagedBean
+@SessionScoped
 public class TreatmentBean {
 	
 	private int treatmentId;
